@@ -12,7 +12,7 @@ namespace CodeBuddies.ViewModels
     public class SessionsListViewModel : ViewModelBase
     {
         private ObservableCollection<ISession> sessions;
-        private SessionService sessionService;
+        private ISessionService sessionService;
 
         public RelayCommand<ISession> LeaveSessionCommand => new RelayCommand<ISession>(LeaveSession);
         public RelayCommand<ISession> JoinSessionCommand => new RelayCommand<ISession>(JoinSession);
@@ -27,7 +27,8 @@ namespace CodeBuddies.ViewModels
         public SessionsListViewModel()
         {
             GlobalEvents.BuddyAddedToSession += HandleBuddyAddedToSession;
-            sessionService = new SessionService();
+            ISessionRepository sessionRepository = new SessionRepository();
+            sessionService = new SessionService(sessionRepository);
             Sessions = new ObservableCollection<ISession>(sessionService.getAllSessionsForCurrentBuddy());
 
         }

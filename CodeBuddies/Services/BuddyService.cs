@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CodeBuddies.Services
 {
-    public class BuddyService
+    public class BuddyService : IBuddyService
     {
         IBuddyRepository budyRepository;
 
@@ -32,7 +32,7 @@ namespace CodeBuddies.Services
         public List<IBuddy> InactiveBuddies
         {
             get { return inactiveBuddies; }
-            set { inactiveBuddies = value;}
+            set { inactiveBuddies = value; }
         }
 
         public BuddyService(IBuddyRepository repo)
@@ -63,7 +63,7 @@ namespace CodeBuddies.Services
         public void refreshData()
         {
             ActiveBuddies = BuddyRepository.GetActiveBuddies();
-            InactiveBuddies = BuddyRepository .GetInactiveBuddies();
+            InactiveBuddies = BuddyRepository.GetInactiveBuddies();
         }
 
         public void changeBuddyStatus(IBuddy buddy)

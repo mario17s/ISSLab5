@@ -9,10 +9,11 @@ namespace CodeBuddies.ViewModels
 {
     public class CreateNewSessionPopUpViewModel : ViewModelBase
     {
-        private SessionService sessionService;
+        private ISessionService sessionService;
         public CreateNewSessionPopUpViewModel()
         {
-            sessionService = new SessionService();
+            ISessionRepository sessionRepository = new SessionRepository();
+            sessionService = new SessionService(sessionRepository);
         }
 
         public void AddNewSession(string sessionName, string maxParticipants)

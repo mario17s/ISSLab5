@@ -12,8 +12,8 @@ namespace CodeBuddies.ViewModels
     public class NotificationsPanelViewModel : ViewModelBase
     {
         private ObservableCollection<INotification> notifications;
-        private NotificationService notificationService;
-        private SessionService sessionService;
+        private INotificationService notificationService;
+        private ISessionService sessionService;
 
         // This creates a command that runs a function and sends the 
         public RelayCommand<INotification> AcceptCommand => new RelayCommand<INotification>(AcceptInvite);
@@ -30,8 +30,10 @@ namespace CodeBuddies.ViewModels
         public NotificationsPanelViewModel()
         {
             // TODO inject these more cleanly
-            notificationService = new NotificationService();
-            sessionService = new SessionService();
+            INotificationRepository notificationRepository = new NotificationRepository();
+            notificationService = new NotificationService(notificationRepository);
+            ISessionRepository sessionRepository = new SessionRepository();
+            sessionService = new SessionService(sessionRepository);
             Notifications = new ObservableCollection<INotification>(notificationService.getAllNotificationsForCurrentBuddy());
 
         }

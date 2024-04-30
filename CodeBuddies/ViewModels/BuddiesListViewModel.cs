@@ -17,9 +17,9 @@ namespace CodeBuddies.ViewModels
     {
         private ObservableCollection<IBuddy> buddies;
         public ICommand OpenPopupCommand { get; }
-        private BuddyService service;
+        private IBuddyService service;
 
-        public BuddyService Service
+        public IBuddyService Service
         {
             get { return service; }
             set { service = value; }

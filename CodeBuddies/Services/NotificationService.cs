@@ -9,18 +9,19 @@ using System.Threading.Tasks;
 
 namespace CodeBuddies.Services
 {
-    public class NotificationService
+    public class NotificationService : INotificationService
     {
         private INotificationRepository notificationRepository;
 
-        public INotificationRepository NotificationRepository { 
+        public INotificationRepository NotificationRepository
+        {
             get { return notificationRepository; }
             set { notificationRepository = value; }
         }
-            
-        public NotificationService()
+
+        public NotificationService(INotificationRepository repo)
         {
-            notificationRepository = new NotificationRepository();
+            notificationRepository = repo;
         }
 
         public List<INotification> getAllNotificationsForCurrentBuddy()

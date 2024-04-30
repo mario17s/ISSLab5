@@ -14,9 +14,9 @@ namespace CodeBuddies.ViewModels
 {
     public class ActiveInactiveBuddiesListViewModel : ViewModelBase
     {
-        BuddyService buddyService;
+        IBuddyService buddyService;
 
-        public BuddyService BuddyService
+        public IBuddyService BuddyService
         {
             get { return buddyService; }
             set { buddyService = value; }

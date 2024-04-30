@@ -1,4 +1,5 @@
 ﻿using CodeBuddies.Models.Entities;
+using CodeBuddies.Models.Validators;
 using CodeBuddies.Repositories;
 using CodeBuddies.Resources.Data;
 using System;
@@ -11,7 +12,7 @@ using static CodeBuddies.Models.Validators.ValidationForNewSession;
 
 namespace CodeBuddies.Services
 {
-    public class SessionService
+    public class SessionService : ISessionService
     {
         private ISessionRepository sessionRepository;
 
@@ -21,9 +22,9 @@ namespace CodeBuddies.Services
             set { sessionRepository = value; }
         }
 
-        public SessionService()
+        public SessionService(ISessionRepository repo)
         {
-            sessionRepository = new SessionRepository();
+            sessionRepository = repo;
         }
 
         public List<ISession> getAllSessionsForCurrentBuddy()
@@ -33,10 +34,11 @@ namespace CodeBuddies.Services
 
         public long AddNewSession(string sessionName, string maxParticipants)
         {
-            ValidateSessionId(sessionRepository.GetFreeSessionId());
-            ValidateSessionName(sessionName);
-            ValidateMaxNoOfBuddies(maxParticipants);
-            ValidateBuddyId(Constants.CLIENT_BUDDY_ID);
+            IValidationForNewSession validator = new ValidationForNewSession();
+            validator.ValidateSessionId(sessionRepository.GetFreeSessionId());
+            validator.ValidateSessionName(sessionName);
+            validator.ValidateMaxNoOfBuddies(maxParticipants);
+            validator.ValidateBuddyId(Constants.CLIENT_BUDDY_ID);
 
             long sessionId = sessionRepository.AddNewSession(sessionName, Constants.CLIENT_BUDDY_ID, Int32.Parse(maxParticipants));
             return sessionId;
@@ -54,7 +56,7 @@ namespace CodeBuddies.Services
 
         public List<ISession> FilterSessionsBySessionName(string sessionName)
         {
-            List<ISession> filteredSessions = new List<ISession> ();
+            List<ISession> filteredSessions = new List<ISession>();
             foreach (var session in sessionRepository.GetAllSessionsOfABuddy(Constants.CLIENT_BUDDY_ID))
             {
                 if (session.Name.ToLower().Contains(sessionName.ToLower()))
