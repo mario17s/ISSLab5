@@ -3,6 +3,7 @@ using CodeBuddies.Repositories;
 using CodeBuddies.Resources.Data;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +50,19 @@ namespace CodeBuddies.Services
         public string getSessionName(long sessionId)
         {
             return sessionRepository.GetSessionName(sessionId);
+        }
+
+        public List<ISession> FilterSessionsBySessionName(string sessionName)
+        {
+            List<ISession> filteredSessions = new List<ISession> ();
+            foreach (var session in sessionRepository.GetAllSessionsOfABuddy(Constants.CLIENT_BUDDY_ID))
+            {
+                if (session.Name.ToLower().Contains(sessionName.ToLower()))
+                {
+                    filteredSessions.Add(session);
+                }
+            }
+            return filteredSessions;
         }
     }
 }

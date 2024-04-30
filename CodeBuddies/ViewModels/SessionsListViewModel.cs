@@ -2,6 +2,7 @@
 using CodeBuddies.MVVM;
 using CodeBuddies.Repositories;
 using CodeBuddies.Resources.Data;
+using CodeBuddies.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -11,7 +12,7 @@ namespace CodeBuddies.ViewModels
     internal class SessionsListViewModel : ViewModelBase
     {
         private ObservableCollection<ISession> sessions;
-        private ISessionRepository sessionRepository;
+        private SessionService sessionService;
 
         public RelayCommand<ISession> LeaveSessionCommand => new RelayCommand<ISession>(LeaveSession);
         public RelayCommand<ISession> JoinSessionCommand => new RelayCommand<ISession>(JoinSession);
@@ -26,8 +27,8 @@ namespace CodeBuddies.ViewModels
         public SessionsListViewModel()
         {
             GlobalEvents.BuddyAddedToSession += HandleBuddyAddedToSession;
-            sessionRepository = new SessionRepository();
-            Sessions = new ObservableCollection<ISession>(sessionRepository.GetAllSessionsOfABuddy(Constants.CLIENT_BUDDY_ID));
+            sessionService = new SessionService();
+            Sessions = new ObservableCollection<ISession>(sessionService.getAllSessionsForCurrentBuddy());
 
         }
 
@@ -49,25 +50,17 @@ namespace CodeBuddies.ViewModels
             if (string.IsNullOrWhiteSpace(SearchBySessionName))
             {
                 Sessions.Clear();
-                Sessions = new ObservableCollection<ISession>(sessionRepository.GetAllSessionsOfABuddy(Constants.CLIENT_BUDDY_ID));
+                Sessions = new ObservableCollection<ISession>(sessionService.getAllSessionsForCurrentBuddy());
             }
             else
             {
-                ObservableCollection<ISession> filteredSessions = new ObservableCollection<ISession>();
-                foreach (var session in sessionRepository.GetAllSessionsOfABuddy(Constants.CLIENT_BUDDY_ID))
-                {
-                    if (session.Name.ToLower().Contains(SearchBySessionName.ToLower()))
-                    {
-                        filteredSessions.Add(session);
-                    }
-                }
-                Sessions = filteredSessions;
+                Sessions = new ObservableCollection<ISession>(sessionService.FilterSessionsBySessionName(SearchBySessionName));
             }
         }
 
         public void HandleBuddyAddedToSession(long buddyId, long sessionId)
         {
-            Sessions = new ObservableCollection<ISession>(sessionRepository.GetAllSessionsOfABuddy(Constants.CLIENT_BUDDY_ID));
+            Sessions = new ObservableCollection<ISession>(sessionService.getAllSessionsForCurrentBuddy());
         }
         public void LeaveSession(ISession session)
         {

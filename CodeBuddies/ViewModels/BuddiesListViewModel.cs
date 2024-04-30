@@ -48,7 +48,8 @@ namespace CodeBuddies.ViewModels
 
         public BuddiesListViewModel()
         {
-            service = new BuddyService();
+            IBuddyRepository repo = new BuddyRepository();
+            service = new BuddyService(repo);
             GlobalEvents.BuddyPinned += HandleBuddyPinned;
             LoadBuddies();
         }

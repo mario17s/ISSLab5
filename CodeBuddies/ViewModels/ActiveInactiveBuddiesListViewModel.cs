@@ -48,7 +48,8 @@ namespace CodeBuddies.ViewModels
         
         public ActiveInactiveBuddiesListViewModel()
         {
-            BuddyService = new BuddyService();
+            IBuddyRepository repo = new BuddyRepository();
+            BuddyService = new BuddyService(repo);
             Active = new ObservableCollection<IBuddy>(BuddyService.ActiveBuddies);
             Inactive = new ObservableCollection<IBuddy>(BuddyService.InactiveBuddies);
         }

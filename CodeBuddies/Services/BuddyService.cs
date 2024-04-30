@@ -35,9 +35,9 @@ namespace CodeBuddies.Services
             set { inactiveBuddies = value;}
         }
 
-        public BuddyService()
+        public BuddyService(IBuddyRepository repo)
         {
-            budyRepository = new BuddyRepository();
+            budyRepository = repo;
             ActiveBuddies = budyRepository.GetActiveBuddies();
             InactiveBuddies = budyRepository.GetInactiveBuddies();
         }
