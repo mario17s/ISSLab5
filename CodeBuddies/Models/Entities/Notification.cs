@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeBuddies.Models.Entities
 {
-    internal abstract class Notification : INotification
+    public abstract class Notification : INotification
     {
         protected long notificationId;
 

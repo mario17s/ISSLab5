@@ -1,7 +1,7 @@
 ﻿
 namespace CodeBuddies.Models.Entities
 {
-    internal interface ICodeContribution
+    public interface ICodeContribution
     {
         DateTime ContributionDate { get; set; }
         int ContributionValue { get; set; }

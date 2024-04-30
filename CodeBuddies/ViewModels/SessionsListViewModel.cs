@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace CodeBuddies.ViewModels
 {
-    internal class SessionsListViewModel : ViewModelBase
+    public class SessionsListViewModel : ViewModelBase
     {
         private ObservableCollection<ISession> sessions;
         private SessionService sessionService;

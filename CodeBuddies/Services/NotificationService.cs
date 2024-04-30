@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CodeBuddies.Services
 {
-    internal class NotificationService
+    public class NotificationService
     {
         private INotificationRepository notificationRepository;
 

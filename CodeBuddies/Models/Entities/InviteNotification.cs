@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeBuddies.Models.Entities
 {
-    internal class InviteNotification : Notification
+    public class InviteNotification : Notification
     {
         private bool isAccepted;
 

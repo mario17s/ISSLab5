@@ -1,7 +1,7 @@
 ﻿
 namespace CodeBuddies.Models.Entities
 {
-    internal interface IMessage
+    public interface IMessage
     {
         string Content { get; set; }
         long MessageId { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeBuddies.Models.Entities
 {
-    internal class Message : IMessage
+    public class Message : IMessage
     {
         private long messageId;
 

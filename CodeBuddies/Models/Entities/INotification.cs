@@ -1,7 +1,7 @@
 ﻿
 namespace CodeBuddies.Models.Entities
 {
-    internal interface INotification
+    public interface INotification
     {
         string Description { get; set; }
         long NotificationId { get; set; }

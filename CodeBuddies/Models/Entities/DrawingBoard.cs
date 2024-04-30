@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeBuddies.Models.Entities
 {
-    internal class DrawingBoard : IDrawingBoard
+    public class DrawingBoard : IDrawingBoard
     {
         private string filePath;
 

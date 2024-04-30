@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CodeBuddies.Services
 {
-    internal class BuddyService
+    public class BuddyService
     {
         IBuddyRepository budyRepository;
 

@@ -2,7 +2,7 @@
 
 namespace CodeBuddies.Repositories
 {
-    internal interface IBuddyRepository
+    public interface IBuddyRepository
     {
         List<IBuddy> GetActiveBuddies();
         List<IBuddy> GetAllBuddies();

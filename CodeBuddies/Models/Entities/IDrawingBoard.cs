@@ -1,6 +1,6 @@
 ﻿namespace CodeBuddies.Models.Entities
 {
-    internal interface IDrawingBoard
+    public interface IDrawingBoard
     {
         string FilePath { get; set; }
 

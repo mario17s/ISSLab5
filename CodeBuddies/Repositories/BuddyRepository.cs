@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Data;
 namespace CodeBuddies.Repositories
 {
-    internal class BuddyRepository : DBRepositoryBase, IBuddyRepository
+    public class BuddyRepository : DBRepositoryBase, IBuddyRepository
     {
 
         public BuddyRepository() : base() { }

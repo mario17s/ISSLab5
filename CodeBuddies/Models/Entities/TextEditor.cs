@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeBuddies.Models.Entities
 {
-    internal class TextEditor : ITextEditor
+    public class TextEditor : ITextEditor
     {
         private string textColor;
 

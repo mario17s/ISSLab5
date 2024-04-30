@@ -11,7 +11,7 @@ using static CodeBuddies.Models.Validators.ValidationForNewSession;
 
 namespace CodeBuddies.Services
 {
-    internal class SessionService
+    public class SessionService
     {
         private ISessionRepository sessionRepository;
 

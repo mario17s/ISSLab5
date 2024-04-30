@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace CodeBuddies.MVVM
 {
-    internal abstract class DBRepositoryBase
+    public abstract class DBRepositoryBase
     {
         protected SqlConnection sqlConnection = new SqlConnection(Constants.CONNECTION_STRING);
 

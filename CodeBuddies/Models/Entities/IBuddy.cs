@@ -1,7 +1,7 @@
 ﻿
 namespace CodeBuddies.Models.Entities
 {
-    internal interface IBuddy
+    public interface IBuddy
     {
         string BuddyName { get; set; }
         long Id { get; set; }

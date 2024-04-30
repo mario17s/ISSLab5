@@ -7,7 +7,7 @@ using static CodeBuddies.Models.Validators.ValidationForNewSession;
 
 namespace CodeBuddies.ViewModels
 {
-    internal class CreateNewSessionPopUpViewModel : ViewModelBase
+    public class CreateNewSessionPopUpViewModel : ViewModelBase
     {
         private SessionService sessionService;
         public CreateNewSessionPopUpViewModel()

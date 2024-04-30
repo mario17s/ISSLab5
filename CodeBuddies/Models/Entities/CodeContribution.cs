@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeBuddies.Models.Entities
 {
-    internal class CodeContribution : ICodeContribution
+    public class CodeContribution : ICodeContribution
     {
         private long contributor;
 

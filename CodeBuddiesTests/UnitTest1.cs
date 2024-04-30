@@ -1,12 +1,20 @@
+using CodeBuddies.Models.Entities;
+
 namespace CodeBuddiesTests
 {
-    [TestClass]
-    public class UnitTest1
+    public class Tests
     {
-        [TestMethod]
-        public void TestMethod1()
+        [SetUp]
+        public void Setup()
         {
-            Assert.AreEqual(1, 1);
+        }
+
+        [Test]
+        public void Test1()
+        {
+            Buddy buddy = new Buddy(1, "Buddy", "asdad", "Yo", null);
+
+            Assert.AreEqual(1, buddy.Id);
         }
     }
 }

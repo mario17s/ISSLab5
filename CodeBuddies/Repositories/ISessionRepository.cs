@@ -2,7 +2,7 @@
 
 namespace CodeBuddies.Repositories
 {
-    internal interface ISessionRepository
+    public interface ISessionRepository
     {
         void AddBuddyMemberToSession(long buddyId, long sessionId);
         long AddNewSession(string sessionName, long ownerId, int maxParticipants);

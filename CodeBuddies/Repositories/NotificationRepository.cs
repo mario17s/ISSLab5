@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace CodeBuddies.Repositories
 {
-    internal class NotificationRepository : DBRepositoryBase, INotificationRepository
+    public class NotificationRepository : DBRepositoryBase, INotificationRepository
     {
         public NotificationRepository() : base()
         {

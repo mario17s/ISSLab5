@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeBuddies.Models.Entities
 {
-    internal class CodeReviewSection : ICodeReviewSection
+    public class CodeReviewSection : ICodeReviewSection
     {
         private long id;
 

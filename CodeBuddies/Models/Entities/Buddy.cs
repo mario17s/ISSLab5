@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeBuddies.Models.Entities
 {
-    internal class Buddy : IBuddy
+    public class Buddy : IBuddy
     {
         private long id;
 

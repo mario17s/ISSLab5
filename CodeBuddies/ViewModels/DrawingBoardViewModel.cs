@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CodeBuddies.ViewModels
 {
-    internal class DrawingBoardViewModel : ViewModelBase
+    public class DrawingBoardViewModel : ViewModelBase
     {
     }
 }

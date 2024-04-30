@@ -7,7 +7,7 @@ using static CodeBuddies.Resources.Data.Constants;
 
 namespace CodeBuddies.Models.Validators
 {
-    internal class ValidationForNewSession
+    public class ValidationForNewSession
     {
         public static void ValidateSessionName(string sessionName)
         {

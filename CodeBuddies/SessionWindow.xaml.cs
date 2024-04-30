@@ -23,7 +23,7 @@ namespace CodeBuddies
             };
         }
 
-        internal SessionRepository getSessionRepository()
+        public SessionRepository getSessionRepository()
         {
             return sessionRepository;
         }

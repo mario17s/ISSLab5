@@ -9,7 +9,7 @@ using static CodeBuddies.Resources.Data.Constants;
 
 namespace CodeBuddies.Repositories
 {
-    internal class SessionRepository : DBRepositoryBase, ISessionRepository
+    public class SessionRepository : DBRepositoryBase, ISessionRepository
     {
         public SessionRepository() : base() { }
 

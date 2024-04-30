@@ -1,7 +1,7 @@
 ﻿
 namespace CodeBuddies.Models.Entities
 {
-    internal interface ISession
+    public interface ISession
     {
         List<long> Buddies { get; set; }
         List<ICodeContribution> CodeContributions { get; set; }

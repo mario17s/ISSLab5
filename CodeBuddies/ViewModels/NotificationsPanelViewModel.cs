@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace CodeBuddies.ViewModels
 {
-    internal class NotificationsPanelViewModel : ViewModelBase
+    public class NotificationsPanelViewModel : ViewModelBase
     {
         private ObservableCollection<INotification> notifications;
         private NotificationService notificationService;

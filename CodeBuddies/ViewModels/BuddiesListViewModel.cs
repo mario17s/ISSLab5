@@ -13,7 +13,7 @@ using SessionsModalWindow = CodeBuddies.Views.Windows.SessionsModalWindow;
 
 namespace CodeBuddies.ViewModels
 {
-    internal class BuddiesListViewModel : ViewModelBase
+    public class BuddiesListViewModel : ViewModelBase
     {
         private ObservableCollection<IBuddy> buddies;
         public ICommand OpenPopupCommand { get; }
@@ -110,7 +110,7 @@ namespace CodeBuddies.ViewModels
             }
         }
 
-        internal void HandleBuddyPinned()
+        public void HandleBuddyPinned()
         {
             buddies.Remove(selectedBuddy);
             buddies.Insert(0, selectedBuddy);

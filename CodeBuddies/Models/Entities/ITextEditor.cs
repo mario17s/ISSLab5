@@ -1,7 +1,7 @@
 ﻿
 namespace CodeBuddies.Models.Entities
 {
-    internal interface ITextEditor
+    public interface ITextEditor
     {
         List<string> FilePaths { get; set; }
         string TextColor { get; set; }

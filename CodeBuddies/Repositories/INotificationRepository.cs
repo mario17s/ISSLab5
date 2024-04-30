@@ -2,7 +2,7 @@
 
 namespace CodeBuddies.Repositories
 {
-    internal interface INotificationRepository
+    public interface INotificationRepository
     {
         List<INotification> GetAll();
         List<INotification> GetAllByBuddyId(long buddyId);

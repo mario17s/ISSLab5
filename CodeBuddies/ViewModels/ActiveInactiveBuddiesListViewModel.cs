@@ -12,7 +12,7 @@ using CodeBuddies.Views.UserControls;
 
 namespace CodeBuddies.ViewModels
 {
-    internal class ActiveInactiveBuddiesListViewModel : ViewModelBase
+    public class ActiveInactiveBuddiesListViewModel : ViewModelBase
     {
         BuddyService buddyService;
 
