@@ -18,6 +18,7 @@ namespace CodeBuddiesTests
         {
             string validSessionName = "ValidSessionName";
             var validatorMock = new Mock<IValidationForNewSession>();
+            validatorMock.Setup(x => x.ValidateSessionName(validSessionName));
 
             Assert.DoesNotThrow(() => validatorMock.Object.ValidateSessionName(validSessionName));
         }
@@ -27,6 +28,7 @@ namespace CodeBuddiesTests
         {
             string invalidSessionName = "Sh";
             var validatorMock = new Mock<IValidationForNewSession>();
+            validatorMock.Setup(x => x.ValidateSessionName(invalidSessionName)).Throws<ArgumentException>();
 
             Assert.Throws<ArgumentException>(() => validatorMock.Object.ValidateSessionName(invalidSessionName));
         }
@@ -36,6 +38,7 @@ namespace CodeBuddiesTests
         {
             string validMaxNoOfBuddies = "5";
             var validatorMock = new Mock<IValidationForNewSession>();
+            validatorMock.Setup(x => x.ValidateMaxNoOfBuddies(validMaxNoOfBuddies));
 
             Assert.DoesNotThrow(() => validatorMock.Object.ValidateMaxNoOfBuddies(validMaxNoOfBuddies));
         }
@@ -45,7 +48,8 @@ namespace CodeBuddiesTests
         {
             string invalidMaxNoOfBuddies = "invalid";
             var validatorMock = new Mock<IValidationForNewSession>();
-                
+            validatorMock.Setup(x => x.ValidateMaxNoOfBuddies(invalidMaxNoOfBuddies)).Throws<ArgumentException>();
+
             Assert.Throws<ArgumentException>(() => validatorMock.Object.ValidateMaxNoOfBuddies(invalidMaxNoOfBuddies));
         }
 
@@ -54,6 +58,7 @@ namespace CodeBuddiesTests
         {
             string outOfRangeMaxNoOfBuddies = "100";
             var validatorMock = new Mock<IValidationForNewSession>();
+            validatorMock.Setup(x => x.ValidateMaxNoOfBuddies(outOfRangeMaxNoOfBuddies)).Throws<ArgumentOutOfRangeException>();
 
             Assert.Throws<ArgumentOutOfRangeException>(() => validatorMock.Object.ValidateMaxNoOfBuddies(outOfRangeMaxNoOfBuddies));
         }
@@ -63,6 +68,7 @@ namespace CodeBuddiesTests
         {
             long negativeBuddyId = -1;
             var validatorMock = new Mock<IValidationForNewSession>();
+            validatorMock.Setup(x => x.ValidateBuddyId(negativeBuddyId)).Throws<ArgumentOutOfRangeException>();
 
             Assert.Throws<ArgumentOutOfRangeException>(() => validatorMock.Object.ValidateBuddyId(negativeBuddyId));
         }
@@ -72,6 +78,7 @@ namespace CodeBuddiesTests
         {
             long negativeSessionId = -1;
             var validatorMock = new Mock<IValidationForNewSession>();
+            validatorMock.Setup(x => x.ValidateSessionId(negativeSessionId)).Throws<ArgumentOutOfRangeException>();
 
             Assert.Throws<ArgumentOutOfRangeException>(() => validatorMock.Object.ValidateSessionId(negativeSessionId));
         }
