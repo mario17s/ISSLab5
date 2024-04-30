@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="CodeBuddies.Views.UserControls.NotificationsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CodeBuddies.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="400">
+    <Grid Background="#BFBDBA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Notifications" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image Height="40" Width="40" Source="pack://application:,,,/CodeBuddies;component/resources/pictures/notifications_picture.png" HorizontalAlignment="Left" Margin="10 0 0 0" VerticalAlignment="Center" />
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <ListView ItemsSource="{Binding Notifications}"  Template="{StaticResource CustomListViewTemplate}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="40">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".8*"/>
+                                <ColumnDefinition Width=".2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Height="30" Style="{StaticResource NotificationButton}" Content="{Binding Description}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10 0 0 0" />
+
+
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".5*" />
+                                    <ColumnDefinition Width=".5*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Button Grid.Column="0" Style="{StaticResource AcceptDeclineNotificationButton}" Name="acceptInvitationBtn" Width="30" Height="30" 
+                                        Command="{Binding DataContext.AcceptCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                        CommandParameter="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
+                                    <Image Source="pack://application:,,,/CodeBuddies;component/resources/pictures/accepted-picture.png"/>
+                                </Button>
+
+                                <Button Grid.Column="1" Style="{StaticResource AcceptDeclineNotificationButton}" Name="declineInvitationBtn" Width="35" Height="35"
+                                        Command="{Binding DataContext.DeclineCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                        CommandParameter="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
+                                    <Image Source="pack://application:,,,/CodeBuddies;component/resources/pictures/decline-picture.png"/>
+                                </Button>
+                            </Grid>
+                            <Button Grid.Column="1" Style="{StaticResource MarkReadButton}" Name="markReadBtn" Width="30" Height="30"
+                                    Command="{Binding DataContext.MarkReadCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                    CommandParameter="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
+                                <Image Source="pack://application:,,,/CodeBuddies;component/resources/pictures/mark-read.png"/>
+                            </Button>
+
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+
+    </Grid>
+</UserControl>
+
+    

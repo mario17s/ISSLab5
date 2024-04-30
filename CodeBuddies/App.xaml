@@ -1,0 +1,22 @@
+﻿<Application x:Class="CodeBuddies.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CodeBuddies"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Views/Styles/ButtonStyles.xaml" />
+                <ResourceDictionary Source="Views/Styles/TextBoxStyles.xaml" />
+                <ResourceDictionary Source="Views/Styles/LabelStyles.xaml" />
+                <ResourceDictionary Source="Views/Styles/ScrollViewerStyles.xaml" />
+                <ResourceDictionary Source="Views/Styles/DataGridStyles.xaml" />
+                <ResourceDictionary Source="Views/Styles/ListViewStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>
