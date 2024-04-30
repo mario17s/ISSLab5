@@ -7,9 +7,10 @@ using static CodeBuddies.Resources.Data.Constants;
 
 namespace CodeBuddies.Models.Validators
 {
-    public class ValidationForNewSession
+
+    public class ValidationForNewSession: IValidationForNewSession
     {
-        public static void ValidateSessionName(string sessionName)
+        public void ValidateSessionName(string sessionName)
         {
             if (sessionName.Length < 3 || sessionName.Length > 50)
             {
@@ -17,7 +18,7 @@ namespace CodeBuddies.Models.Validators
             }
         }
 
-        public static void ValidateMaxNoOfBuddies(string maxNoOfBuddies)
+        public void ValidateMaxNoOfBuddies(string maxNoOfBuddies)
         {
             int maxNoOfBuddiesInt;
 
@@ -31,7 +32,7 @@ namespace CodeBuddies.Models.Validators
             }
         }
 
-        public static void ValidateBuddyId(long buddyId)
+        public void ValidateBuddyId(long buddyId)
         {
             if (buddyId < 0)
             {
@@ -39,7 +40,7 @@ namespace CodeBuddies.Models.Validators
             }
         }
 
-        public static void ValidateSessionId(long sessionId)
+        public  void ValidateSessionId(long sessionId)
         {
             if (sessionId < 0)
             {
