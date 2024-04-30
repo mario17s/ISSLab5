@@ -48,7 +48,6 @@ namespace CodeBuddies.Models.Entities
             set { notifications = value; }
         }
 
-
         public Buddy(long buddyId, string buddyName, string profilePhotoUrl, string status, List<Notification> notifications)
         {
             Id = buddyId;

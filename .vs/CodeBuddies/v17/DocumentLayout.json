@@ -1,0 +1,181 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|d:\\personal\\ubb\\year 2\\sem 2\\software engineering\\code buddies\\codebuddies\\viewmodels\\activeinactivebuddieslistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|solutionrelative:codebuddies\\viewmodels\\activeinactivebuddieslistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|d:\\personal\\ubb\\year 2\\sem 2\\software engineering\\code buddies\\codebuddies\\mvvm\\dbrepositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|solutionrelative:codebuddies\\mvvm\\dbrepositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|d:\\personal\\ubb\\year 2\\sem 2\\software engineering\\code buddies\\codebuddies\\services\\notificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|solutionrelative:codebuddies\\services\\notificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|d:\\personal\\ubb\\year 2\\sem 2\\software engineering\\code buddies\\codebuddies\\viewmodels\\buddieslistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|solutionrelative:codebuddies\\viewmodels\\buddieslistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|d:\\personal\\ubb\\year 2\\sem 2\\software engineering\\code buddies\\codebuddies\\codebuddies.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|solutionrelative:codebuddies\\codebuddies.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|d:\\personal\\ubb\\year 2\\sem 2\\software engineering\\code buddies\\codebuddies\\resources\\data\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|solutionrelative:codebuddies\\resources\\data\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|d:\\personal\\ubb\\year 2\\sem 2\\software engineering\\code buddies\\codebuddies\\models\\entities\\ibuddy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|solutionrelative:codebuddies\\models\\entities\\ibuddy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|d:\\personal\\ubb\\year 2\\sem 2\\software engineering\\code buddies\\codebuddies\\models\\entities\\buddy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350F01CD-1357-4E67-B6AE-1AFE83AD106A}|CodeBuddies\\CodeBuddies.csproj|solutionrelative:codebuddies\\models\\entities\\buddy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{505D3E3C-290B-49DF-8DD9-977556E3D5CA}|CodeBuddiesTests\\CodeBuddiesTests.csproj|d:\\personal\\ubb\\year 2\\sem 2\\software engineering\\code buddies\\codebuddiestests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{505D3E3C-290B-49DF-8DD9-977556E3D5CA}|CodeBuddiesTests\\CodeBuddiesTests.csproj|solutionrelative:codebuddiestests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ActiveInactiveBuddiesListViewModel.cs",
+              "DocumentMoniker": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\ViewModels\\ActiveInactiveBuddiesListViewModel.cs",
+              "RelativeDocumentMoniker": "CodeBuddies\\ViewModels\\ActiveInactiveBuddiesListViewModel.cs",
+              "ToolTip": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\ViewModels\\ActiveInactiveBuddiesListViewModel.cs",
+              "RelativeToolTip": "CodeBuddies\\ViewModels\\ActiveInactiveBuddiesListViewModel.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAAADEAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T09:30:21.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DBRepositoryBase.cs",
+              "DocumentMoniker": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\MVVM\\DBRepositoryBase.cs",
+              "RelativeDocumentMoniker": "CodeBuddies\\MVVM\\DBRepositoryBase.cs",
+              "ToolTip": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\MVVM\\DBRepositoryBase.cs",
+              "RelativeToolTip": "CodeBuddies\\MVVM\\DBRepositoryBase.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T09:23:36.74Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NotificationService.cs",
+              "DocumentMoniker": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\Services\\NotificationService.cs",
+              "RelativeDocumentMoniker": "CodeBuddies\\Services\\NotificationService.cs",
+              "ToolTip": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\Services\\NotificationService.cs",
+              "RelativeToolTip": "CodeBuddies\\Services\\NotificationService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T09:28:46.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BuddiesListViewModel.cs",
+              "DocumentMoniker": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\ViewModels\\BuddiesListViewModel.cs",
+              "RelativeDocumentMoniker": "CodeBuddies\\ViewModels\\BuddiesListViewModel.cs",
+              "ToolTip": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\ViewModels\\BuddiesListViewModel.cs",
+              "RelativeToolTip": "CodeBuddies\\ViewModels\\BuddiesListViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T09:28:33.514Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Constants.cs",
+              "DocumentMoniker": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\Resources\\Data\\Constants.cs",
+              "RelativeDocumentMoniker": "CodeBuddies\\Resources\\Data\\Constants.cs",
+              "ToolTip": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\Resources\\Data\\Constants.cs",
+              "RelativeToolTip": "CodeBuddies\\Resources\\Data\\Constants.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T09:17:50.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CodeBuddies",
+              "DocumentMoniker": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\CodeBuddies.csproj",
+              "RelativeDocumentMoniker": "CodeBuddies\\CodeBuddies.csproj",
+              "ToolTip": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\CodeBuddies.csproj",
+              "RelativeToolTip": "CodeBuddies\\CodeBuddies.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-04-30T09:17:21.892Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IBuddy.cs",
+              "DocumentMoniker": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\Models\\Entities\\IBuddy.cs",
+              "RelativeDocumentMoniker": "CodeBuddies\\Models\\Entities\\IBuddy.cs",
+              "ToolTip": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\Models\\Entities\\IBuddy.cs",
+              "RelativeToolTip": "CodeBuddies\\Models\\Entities\\IBuddy.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAMAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T09:15:03.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Buddy.cs",
+              "DocumentMoniker": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\Models\\Entities\\Buddy.cs",
+              "RelativeDocumentMoniker": "CodeBuddies\\Models\\Entities\\Buddy.cs",
+              "ToolTip": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddies\\Models\\Entities\\Buddy.cs",
+              "RelativeToolTip": "CodeBuddies\\Models\\Entities\\Buddy.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAAAgAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T09:14:43.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddiesTests\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "CodeBuddiesTests\\UnitTest1.cs",
+              "ToolTip": "D:\\Personal\\UBB\\Year 2\\Sem 2\\Software Engineering\\Code Buddies\\CodeBuddiesTests\\UnitTest1.cs",
+              "RelativeToolTip": "CodeBuddiesTests\\UnitTest1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T09:12:48.117Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
