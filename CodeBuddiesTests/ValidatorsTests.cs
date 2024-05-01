@@ -15,7 +15,7 @@ namespace CodeBuddiesTests
 
         [Test]
         public void ValidateSessionName_ValidSessionName_NoExceptionThrown()
-        {
+        { 
             string validSessionName = "ValidSessionName";
             var validatorMock = new Mock<IValidationForNewSession>();
             validatorMock.Setup(x => x.ValidateSessionName(validSessionName));

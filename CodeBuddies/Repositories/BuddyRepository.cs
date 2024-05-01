@@ -40,11 +40,11 @@ namespace CodeBuddies.Repositories
                 foreach (DataRow notificationRow in notificationDataSet.Tables["Notifications"].Rows)
                 {
 
-                    Notification currentNotification;
+                   Notification currentNotification;
 
                     if (notificationRow["notification_type"].ToString() == "invite")
                     {
-                        currentNotification = new InviteNotification((long)notificationRow["id"], (DateTime)notificationRow["notification_timestamp"], notificationRow["notification_type"].ToString(), notificationRow["notification_status"].ToString(), notificationRow["notification_description"].ToString(), (long)notificationRow["sender_id"], (long)notificationRow["receiver_id"], (long)notificationRow["session_id"], false);
+                       currentNotification = new InviteNotification((long)notificationRow["id"], (DateTime)notificationRow["notification_timestamp"], notificationRow["notification_type"].ToString(), notificationRow["notification_status"].ToString(), notificationRow["notification_description"].ToString(), (long)notificationRow["sender_id"], (long)notificationRow["receiver_id"], (long)notificationRow["session_id"], false);
                     }
                     else
                     {
