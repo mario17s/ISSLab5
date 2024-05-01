@@ -66,9 +66,10 @@ namespace CodeBuddies.Services
             InactiveBuddies = BuddyRepository.GetInactiveBuddies();
         }
 
-        public void changeBuddyStatus(IBuddy buddy)
+        public IBuddy changeBuddyStatus(IBuddy buddy)
         {
-            BuddyRepository.UpdateBuddyStatus(buddy);
+            IBuddy changedBuddy = BuddyRepository.UpdateBuddyStatus(buddy);
+            return changedBuddy;
         }
     }
 }
