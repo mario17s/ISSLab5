@@ -7,6 +7,6 @@ namespace CodeBuddies.Repositories
         List<IBuddy> GetActiveBuddies();
         List<IBuddy> GetAllBuddies();
         List<IBuddy> GetInactiveBuddies();
-        void UpdateBuddyStatus(IBuddy buddy);
+        IBuddy UpdateBuddyStatus(IBuddy buddy);
     }
 }

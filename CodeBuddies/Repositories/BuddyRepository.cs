@@ -74,9 +74,10 @@ namespace CodeBuddies.Repositories
             return GetAllBuddies().Where(buddy => buddy.Status == "inactive").ToList();
         }
 
-        public void UpdateBuddyStatus(IBuddy buddy)
+        public IBuddy UpdateBuddyStatus(IBuddy buddy)
         {
             buddy.Status = buddy.Status == "active" ? "inactive" : "active";
+            return buddy;
         }
     }
 }
