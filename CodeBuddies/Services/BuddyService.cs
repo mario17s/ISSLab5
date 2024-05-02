@@ -1,17 +1,17 @@
-﻿using CodeBuddies.Models.Entities;
-using CodeBuddies.Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodeBuddies.Models.Entities;
+using CodeBuddies.Repositories;
 
 namespace CodeBuddies.Services
 {
     public class BuddyService : IBuddyService
     {
-        IBuddyRepository budyRepository;
+        private IBuddyRepository budyRepository;
 
         public IBuddyRepository BuddyRepository
         {

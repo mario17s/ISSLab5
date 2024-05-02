@@ -1,18 +1,17 @@
-﻿using CodeBuddies.MVVM;
-using CodeBuddies.Models.Entities;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Data;
+using CodeBuddies.Models.Entities;
+using CodeBuddies.MVVM;
 namespace CodeBuddies.Repositories
 {
     public class BuddyRepository : DBRepositoryBase, IBuddyRepository
     {
-
-        public BuddyRepository() : base() { }
-
+        public BuddyRepository() : base()
+        {
+        }
 
         public List<IBuddy> GetAllBuddies()
         {
-
             List<IBuddy> buddies = new List<IBuddy>();
 
             DataSet buddyDataSet = new DataSet();
@@ -24,7 +23,6 @@ namespace CodeBuddies.Repositories
 
             foreach (DataRow buddyRow in buddyDataSet.Tables["Buddies"].Rows)
             {
-
                 SqlDataAdapter notificationsDataAdapter = new SqlDataAdapter();
 
                 DataSet notificationDataSet = new DataSet();
@@ -39,7 +37,6 @@ namespace CodeBuddies.Repositories
 
                 foreach (DataRow notificationRow in notificationDataSet.Tables["Notifications"].Rows)
                 {
-
                    Notification currentNotification;
 
                     if (notificationRow["notification_type"].ToString() == "invite")
@@ -49,11 +46,9 @@ namespace CodeBuddies.Repositories
                     else
                     {
                         currentNotification = new InfoNotification((long)notificationRow["id"], (DateTime)notificationRow["notification_timestamp"], notificationRow["notification_type"].ToString(), notificationRow["notification_status"].ToString(), notificationRow["notification_description"].ToString(), (long)notificationRow["sender_id"], (long)notificationRow["receiver_id"], (long)notificationRow["session_id"]);
-
                     }
 
                     notifications.Add(currentNotification);
-
                 }
 
                 IBuddy currentBudy = new Buddy((long)buddyRow["id"], buddyRow["buddy_name"].ToString(), buddyRow["profile_photo_url"].ToString(), buddyRow["buddy_status"].ToString(), notifications);
@@ -61,7 +56,6 @@ namespace CodeBuddies.Repositories
             }
 
             return buddies;
-
         }
 
         public List<IBuddy> GetActiveBuddies()

@@ -1,5 +1,4 @@
-﻿
-namespace CodeBuddies.Models.Entities
+﻿namespace CodeBuddies.Models.Entities
 {
     public interface INotification
     {

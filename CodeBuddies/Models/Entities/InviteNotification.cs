@@ -23,7 +23,6 @@ namespace CodeBuddies.Models.Entities
 
         public InviteNotification()
         {
-
         }
 
         protected override void MarkNotification()

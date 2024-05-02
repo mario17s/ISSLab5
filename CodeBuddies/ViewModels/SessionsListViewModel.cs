@@ -1,11 +1,10 @@
-﻿using CodeBuddies.Models.Entities;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
+using CodeBuddies.Models.Entities;
 using CodeBuddies.MVVM;
 using CodeBuddies.Repositories;
 using CodeBuddies.Resources.Data;
 using CodeBuddies.Services;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-
 
 namespace CodeBuddies.ViewModels
 {
@@ -19,10 +18,16 @@ namespace CodeBuddies.ViewModels
 
         public ObservableCollection<ISession> Sessions
         {
-            get { return sessions; }
-            set { sessions = value; OnPropertyChanged(); }
+            get
+            {
+                return sessions;
+            }
+            set
+            {
+                sessions = value;
+                OnPropertyChanged();
+            }
         }
-
 
         public SessionsListViewModel()
         {
@@ -30,14 +35,16 @@ namespace CodeBuddies.ViewModels
             ISessionRepository sessionRepository = new SessionRepository();
             sessionService = new SessionService(sessionRepository);
             Sessions = new ObservableCollection<ISession>(sessionService.GetAllSessionsForCurrentBuddy());
-
         }
 
         private string searchBySessionName;
 
         public string SearchBySessionName
         {
-            get { return searchBySessionName; }
+            get
+            {
+                return searchBySessionName;
+            }
             set
             {
                 searchBySessionName = value;
@@ -74,18 +81,15 @@ namespace CodeBuddies.ViewModels
             SessionWindow sessionWindow = new SessionWindow();
             sessionWindow.ShowDialog();
         }
-        public void filterSessionOnlyOwner(long buddyId)
+        public void FilterSessionOnlyOwner(long buddyId)
         {
-            Sessions = new ObservableCollection<ISession>(Sessions.Where(Session => Session.OwnerId == buddyId).ToList()); 
+            Sessions = new ObservableCollection<ISession>(Sessions.Where(session => session.OwnerId == buddyId).ToList());
         }
-
 
         public ICommand SendInviteNotification => new RelayCommand<Buddy>(InviteBuddyToSession);
 
         private void InviteBuddyToSession(Buddy buddy)
         {
-
-
         }
     }
 }

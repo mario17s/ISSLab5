@@ -1,6 +1,6 @@
-﻿using CodeBuddies.Resources.Data;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
+using CodeBuddies.Resources.Data;
 
 namespace CodeBuddies.MVVM
 {
@@ -10,11 +10,10 @@ namespace CodeBuddies.MVVM
 
         protected SqlDataAdapter dataAdapter;
 
-        protected DBRepositoryBase() { 
-            
+        protected DBRepositoryBase()
+        {
             OpenConnection();
             dataAdapter = new SqlDataAdapter();
-        
         }
 
         public void OpenConnection()
@@ -32,6 +31,5 @@ namespace CodeBuddies.MVVM
                 sqlConnection.Close();
             }
         }
-
     }
 }

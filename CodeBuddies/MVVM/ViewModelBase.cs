@@ -11,7 +11,5 @@ namespace CodeBuddies.MVVM
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
-
 }

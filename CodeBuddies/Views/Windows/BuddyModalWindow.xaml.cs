@@ -33,7 +33,6 @@ namespace CodeBuddies.Views
             sessionWindow.Owner = Application.Current.MainWindow; // Ensure it's modal to the main window
             bool? dialogResult = sessionWindow.ShowDialog();
 
-
             if (dialogResult == true)
             {
                 Debug.WriteLine("Action pressed! \n");
@@ -49,9 +48,6 @@ namespace CodeBuddies.Views
         {
             GlobalEvents.RaiseBuddyPinned();
             Close(); // Optionally close the window after pinning
-
         }
-
     }
-
 }

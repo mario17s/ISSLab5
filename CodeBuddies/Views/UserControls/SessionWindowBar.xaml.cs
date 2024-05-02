@@ -38,7 +38,7 @@ namespace CodeBuddies.Views.UserControls
             if (parentWindow is SessionWindow sessionWindow)
             {
                 // Access the sessionRepository from the parent window
-                sessionRepository = sessionWindow.getSessionRepository();
+                sessionRepository = sessionWindow.GetSessionRepository();
             }
         }
 

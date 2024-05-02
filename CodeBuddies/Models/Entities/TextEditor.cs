@@ -23,7 +23,6 @@ namespace CodeBuddies.Models.Entities
             set { filePaths = value; }
         }
 
-
         public TextEditor(string textColor, List<string> filesPaths)
         {
             TextColor = textColor;
@@ -49,8 +48,5 @@ namespace CodeBuddies.Models.Entities
         {
             // Open the file
         }
-
-
-
     }
 }

@@ -1,5 +1,5 @@
-﻿using CodeBuddies.Repositories;
-using System.Windows;
+﻿using System.Windows;
+using CodeBuddies.Repositories;
 
 namespace CodeBuddies
 {
@@ -8,7 +8,6 @@ namespace CodeBuddies
     /// </summary>
     public partial class SessionWindow : Window
     {
-
         private SessionRepository sessionRepository;
 
         public SessionWindow()
@@ -19,11 +18,10 @@ namespace CodeBuddies
             SessionWindowBarControl.DrawingBoardButtonClicked += (sender, e) =>
             {
                 ToggleDrawingBoard();
-              
             };
         }
 
-        public SessionRepository getSessionRepository()
+        public SessionRepository GetSessionRepository()
         {
             return sessionRepository;
         }

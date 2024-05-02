@@ -1,11 +1,11 @@
-﻿using CodeBuddies.Models.Entities;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
+using CodeBuddies.Models.Entities;
 using CodeBuddies.Models.Exceptions;
 using CodeBuddies.MVVM;
 using CodeBuddies.Repositories;
 using CodeBuddies.Resources.Data;
 using CodeBuddies.Services;
-using System.Collections.ObjectModel;
-using System.Windows;
 
 namespace CodeBuddies.ViewModels
 {
@@ -15,17 +15,23 @@ namespace CodeBuddies.ViewModels
         private INotificationService notificationService;
         private ISessionService sessionService;
 
-        // This creates a command that runs a function and sends the 
+        // This creates a command that runs a function and sends the
         public RelayCommand<INotification> AcceptCommand => new RelayCommand<INotification>(AcceptInvite);
         public RelayCommand<INotification> DeclineCommand => new RelayCommand<INotification>(DeclineInvite);
         public RelayCommand<INotification> MarkReadCommand => new RelayCommand<INotification>(MarkReadNotification);
 
         public ObservableCollection<INotification> Notifications
         {
-            get { return notifications; }
-            set { notifications = value; OnPropertyChanged(); }
+            get
+            {
+                return notifications;
+            }
+            set
+            {
+                notifications = value;
+                OnPropertyChanged();
+            }
         }
-
 
         public NotificationsPanelViewModel()
         {
@@ -35,7 +41,6 @@ namespace CodeBuddies.ViewModels
             ISessionRepository sessionRepository = new SessionRepository();
             sessionService = new SessionService(sessionRepository);
             Notifications = new ObservableCollection<INotification>(notificationService.GetAllNotificationsForCurrentBuddy());
-
         }
         private void AcceptInvite(INotification notification)
         {
@@ -91,9 +96,10 @@ namespace CodeBuddies.ViewModels
             notifications.Remove(notification);
             // remove from db
             try
-            { 
+            {
                 notificationService.RemoveNotification(notification);
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 // if failure, fetch again
                 Notifications = new ObservableCollection<INotification>(notificationService.GetAllNotificationsForCurrentBuddy());

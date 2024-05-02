@@ -147,6 +147,7 @@ namespace CodeBuddiesTests
             long actualId = mockInviteNotification.Object.ReceiverId;
             Assert.AreEqual(receiverId, actualId);
         }
+
         [Test]
         public void InviteNotification_Constructor_ShouldCreateInviteNotificationWithCorrectSessionId()
         {
@@ -165,11 +166,12 @@ namespace CodeBuddiesTests
             long actualId = mockInviteNotification.Object.SessionId;
             Assert.AreEqual(sessionId, actualId);
         }
+
         [Test]
         public void InviteNotification_SetIsAccepted_ShouldSetIsAcceptedCorrectly()
         {
             bool expectedIsAccepted = true;
-            var mockNotification = new Mock<InviteNotification>();
+            var mockNotification = new Mock<IInviteNotification>();
             mockNotification.Object.IsAccepted = expectedIsAccepted;
             mockNotification.Object.NotificationId = 1;
             mockNotification.Object.SessionId = 1;
@@ -181,7 +183,5 @@ namespace CodeBuddiesTests
             mockNotification.Object.Type = "type";
             mockNotification.VerifySet(notification => notification.IsAccepted = expectedIsAccepted, Times.Once);
         }
-
-
     }
 }

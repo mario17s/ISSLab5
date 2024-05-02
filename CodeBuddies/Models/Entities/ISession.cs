@@ -1,5 +1,4 @@
-﻿
-namespace CodeBuddies.Models.Entities
+﻿namespace CodeBuddies.Models.Entities
 {
     public interface ISession
     {
@@ -17,7 +16,7 @@ namespace CodeBuddies.Models.Entities
         ITextEditor TextEditor { get; set; }
 
         void AddBuddy(long buddyId);
-        void addCodeContribution(int buddyId, DateTime date, int contributionValue);
+        void AddCodeContribution(int buddyId, DateTime date, int contributionValue);
         void LeaveSession(long buddyId);
         void PostCodeReviewSection(ICodeReviewSection codeReviewSection);
         void PostCodeReviewSectionMessage(long codeReviewSectionId, IMessage message);

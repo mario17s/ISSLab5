@@ -1,18 +1,19 @@
-﻿using CodeBuddies.Models.Entities;
-using CodeBuddies.MVVM;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using CodeBuddies.Resources.Data;
-using System;
+using CodeBuddies.Models.Entities;
 using CodeBuddies.Models.Exceptions;
+using CodeBuddies.MVVM;
+using CodeBuddies.Resources.Data;
 using static CodeBuddies.Resources.Data.Constants;
 
 namespace CodeBuddies.Repositories
 {
     public class SessionRepository : DBRepositoryBase, ISessionRepository
     {
-        public SessionRepository() : base() { }
-
+        public SessionRepository() : base()
+        {
+        }
 
         public List<IMessage> GetMessagesForSpecificSession(long sessionId)
         {
@@ -78,8 +79,6 @@ namespace CodeBuddies.Repositories
             return codeReviewMessages;
         }
 
-
-
         public List<ICodeReviewSection> GetCodeReviewSectionsForSpecificSession(long sessionId)
         {
             List<ICodeReviewSection> codeReviewSections = new List<ICodeReviewSection>();
@@ -96,8 +95,9 @@ namespace CodeBuddies.Repositories
             {
                 bool isClosed = false;
                 if (codeReviewSectionRow["code_review_status"].ToString() != "closed")
+                {
                     isClosed = true;
-
+                }
 
                 ICodeReviewSection currentCodeReviewSection = new CodeReviewSection((long)codeReviewSectionRow["id"], (long)codeReviewSectionRow["owner_id"], GetMessagesForSpecificCodeReview((long)codeReviewSectionRow["id"]), codeReviewSectionRow["code_section"].ToString(), isClosed);
                 codeReviewSections.Add(currentCodeReviewSection);
@@ -144,10 +144,8 @@ namespace CodeBuddies.Repositories
                 List<ICodeContribution> sessionCodeContributions = GetCodeContributionsForSpecificSession((long)sessionRow["id"]);
                 List<ICodeReviewSection> sessionCodeReviewSections = GetCodeReviewSectionsForSpecificSession((long)sessionRow["id"]);
 
-
-                ISession session = new Session((long)sessionRow["id"], (long)sessionRow["owner_id"], sessionRow["session_name"].ToString(), Convert.ToDateTime(sessionRow["creation_date"]), Convert.ToDateTime(sessionRow["last_edit_date"]), sessionBuddies, sessionMessages, sessionCodeContributions, sessionCodeReviewSections, new List<string>(), new TextEditor("black", new List<string>()), new DrawingBoard(""));
+                ISession session = new Session((long)sessionRow["id"], (long)sessionRow["owner_id"], sessionRow["session_name"].ToString(), Convert.ToDateTime(sessionRow["creation_date"]), Convert.ToDateTime(sessionRow["last_edit_date"]), sessionBuddies, sessionMessages, sessionCodeContributions, sessionCodeReviewSections, new List<string>(), new TextEditor("black", new List<string>()), new DrawingBoard(string.Empty));
                 sessions.Add(session);
-
             }
 
             return sessions;
@@ -158,7 +156,6 @@ namespace CodeBuddies.Repositories
             string insertQuery = "INSERT INTO BuddiesSessions (buddy_id, session_id) VALUES (@BuddyId, @SessionId)";
             try
             {
-
                 using (SqlCommand insertCommand = new SqlCommand(insertQuery, sqlConnection))
                 {
                     insertCommand.Parameters.AddWithValue("@BuddyId", buddyId);
@@ -167,7 +164,10 @@ namespace CodeBuddies.Repositories
                     insertCommand.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex) { throw new EntityAlreadyExists(ex.Message); }
+            catch (Exception ex)
+            {
+                throw new EntityAlreadyExists(ex.Message);
+            }
         }
 
         public string GetSessionName(long sessionId)
@@ -251,7 +251,6 @@ namespace CodeBuddies.Repositories
 
                 using (SqlCommand insertCommand = new SqlCommand(insertMemberQuery, sqlConnection))
                 {
-
                     insertCommand.Parameters.AddWithValue("@BuddyId", ownerId);
                     insertCommand.Parameters.AddWithValue("@SessionId", freeSessionId);
 
@@ -264,6 +263,5 @@ namespace CodeBuddies.Repositories
             }
             return sessionId;
         }
-
     }
 }

@@ -26,5 +26,4 @@ namespace CodeBuddies.Models.Entities
             BuddyPinned?.Invoke();
         }
     }
-
 }

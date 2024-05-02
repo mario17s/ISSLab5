@@ -7,8 +7,7 @@ using static CodeBuddies.Resources.Data.Constants;
 
 namespace CodeBuddies.Models.Validators
 {
-
-    public class ValidationForNewSession: IValidationForNewSession
+    public class ValidationForNewSession : IValidationForNewSession
     {
         public void ValidateSessionName(string sessionName)
         {
@@ -40,7 +39,7 @@ namespace CodeBuddies.Models.Validators
             }
         }
 
-        public  void ValidateSessionId(long sessionId)
+        public void ValidateSessionId(long sessionId)
         {
             if (sessionId < 0)
             {

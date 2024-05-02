@@ -143,7 +143,7 @@ namespace CodeBuddies.Models.Entities
             FilePaths.Add(filePath);
         }
 
-        public void addCodeContribution(int buddyId, DateTime date, int contributionValue)
+        public void AddCodeContribution(int buddyId, DateTime date, int contributionValue)
         {
             // Add code contribution
             return;
@@ -164,7 +164,5 @@ namespace CodeBuddies.Models.Entities
             // Post message to code review section
             return;
         }
-
-
     }
 }

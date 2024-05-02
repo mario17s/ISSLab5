@@ -26,7 +26,7 @@ namespace CodeBuddies.Views.Windows
             InitializeComponent();
 
             viewModel = new SessionsListViewModel();
-            viewModel.filterSessionOnlyOwner(Constants.CLIENT_BUDDY_ID);
+            viewModel.FilterSessionOnlyOwner(Constants.CLIENT_BUDDY_ID);
             DataContext = viewModel;
         }
         public ICommand CloseCommand => new RelayCommand<Buddy>(_ => Close());

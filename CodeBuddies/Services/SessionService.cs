@@ -1,13 +1,13 @@
-﻿using CodeBuddies.Models.Entities;
-using CodeBuddies.Models.Validators;
-using CodeBuddies.Repositories;
-using CodeBuddies.Resources.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodeBuddies.Models.Entities;
+using CodeBuddies.Models.Validators;
+using CodeBuddies.Repositories;
+using CodeBuddies.Resources.Data;
 using static CodeBuddies.Models.Validators.ValidationForNewSession;
 
 namespace CodeBuddies.Services
@@ -40,7 +40,7 @@ namespace CodeBuddies.Services
             validator.ValidateMaxNoOfBuddies(maxParticipants);
             validator.ValidateBuddyId(Constants.CLIENT_BUDDY_ID);
 
-            long sessionId = sessionRepository.AddNewSession(sessionName, Constants.CLIENT_BUDDY_ID, Int32.Parse(maxParticipants));
+            long sessionId = sessionRepository.AddNewSession(sessionName, Constants.CLIENT_BUDDY_ID, int.Parse(maxParticipants));
             return sessionId;
         }
 

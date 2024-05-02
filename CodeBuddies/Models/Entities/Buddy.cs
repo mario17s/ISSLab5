@@ -57,7 +57,6 @@ namespace CodeBuddies.Models.Entities
             Notifications = notifications;
         }
 
-
         public void CreateNewSession(string sessionName)
         {
             // create a new session

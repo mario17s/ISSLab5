@@ -18,7 +18,7 @@ namespace CodeBuddies.ViewModels
 
         public void AddNewSession(string sessionName, string maxParticipants)
         {
-            long sessionId =  sessionService.AddNewSession(sessionName, maxParticipants);
+            long sessionId = sessionService.AddNewSession(sessionName, maxParticipants);
             GlobalEvents.RaiseBuddyAddedToSessionEvent(Constants.CLIENT_BUDDY_ID, sessionId);
         }
     }

@@ -67,7 +67,6 @@ namespace CodeBuddies.Models.Entities
             set { sessionId = value; }
         }
 
-
         public Notification(long notificationId, DateTime timeStamp, string type, string status, string description, long senderId, long receiverId, long sessionId)
         {
             NotificationId = notificationId;
@@ -82,7 +81,6 @@ namespace CodeBuddies.Models.Entities
 
         public Notification()
         {
-
         }
 
         protected abstract void MarkNotification();

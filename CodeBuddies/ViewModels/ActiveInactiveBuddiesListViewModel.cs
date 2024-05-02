@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodeBuddies.Models.Entities;
 using CodeBuddies.MVVM;
 using CodeBuddies.Repositories;
-using CodeBuddies.Models.Entities;
-using System.Collections.ObjectModel;
 using CodeBuddies.Services;
 using CodeBuddies.Views.UserControls;
 
@@ -14,7 +14,7 @@ namespace CodeBuddies.ViewModels
 {
     public class ActiveInactiveBuddiesListViewModel : ViewModelBase
     {
-        IBuddyService buddyService;
+        private IBuddyService buddyService;
 
         public IBuddyService BuddyService
         {
@@ -26,26 +26,47 @@ namespace CodeBuddies.ViewModels
 
         public ObservableCollection<IBuddy> Active
         {
-            get { return active; }
-            set { active = value; OnPropertyChanged(); }
+            get
+            {
+                return active;
+            }
+            set
+            {
+                active = value;
+                OnPropertyChanged();
+            }
         }
 
         private ObservableCollection<IBuddy> inactive = new ObservableCollection<IBuddy>();
 
         public ObservableCollection<IBuddy> Inactive
         {
-            get { return inactive; }
-            set { inactive = value; OnPropertyChanged(); }
+            get
+            {
+                return inactive;
+            }
+            set
+            {
+                inactive = value;
+                OnPropertyChanged();
+            }
         }
 
         private ObservableCollection<IBuddy> allBuddies = new ObservableCollection<IBuddy>();
 
         public ObservableCollection<IBuddy> AllBuddies
         {
-            get { return allBuddies; }
-            set { allBuddies = value; OnPropertyChanged(); }
+            get
+            {
+                return allBuddies;
+            }
+            set
+            {
+                allBuddies = value;
+                OnPropertyChanged();
+            }
         }
-        
+
         public ActiveInactiveBuddiesListViewModel()
         {
             IBuddyRepository repo = new BuddyRepository();

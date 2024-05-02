@@ -33,7 +33,6 @@ namespace CodeBuddies.Models.Entities
         public void Render()
         {
             // Render the drawing
-
         }
 
         public void Erase(int x, int y)

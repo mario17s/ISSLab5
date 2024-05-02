@@ -1,14 +1,14 @@
-﻿using CodeBuddies.Models.Entities;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
+using System.Windows;
+using System.Windows.Input;
+using CodeBuddies.Models.Entities;
 using CodeBuddies.MVVM;
 using CodeBuddies.Repositories;
 using CodeBuddies.Services;
 using CodeBuddies.Views;
 using CodeBuddies.Views.Windows;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.Windows;
-using System.Windows.Input;
 using SessionsModalWindow = CodeBuddies.Views.Windows.SessionsModalWindow;
 
 namespace CodeBuddies.ViewModels
@@ -29,15 +29,25 @@ namespace CodeBuddies.ViewModels
 
         public ObservableCollection<IBuddy> Buddies
         {
-            get { return buddies; }
-            set { buddies = value; OnPropertyChanged(); }
+            get
+            {
+                return buddies;
+            }
+            set
+            {
+                buddies = value;
+                OnPropertyChanged();
+            }
         }
 
         private string searchText;
 
         public string SearchText
         {
-            get { return searchText; }
+            get
+            {
+                return searchText;
+            }
             set
             {
                 searchText = value;
@@ -64,9 +74,7 @@ namespace CodeBuddies.ViewModels
             {
                 Buddies = new ObservableCollection<IBuddy>(service.FilterBuddies(SearchText));
             }
-
         }
-
 
         private void LoadBuddies()
         {
@@ -90,13 +98,10 @@ namespace CodeBuddies.ViewModels
             Console.WriteLine("test");
             if (SelectedBuddy != null)
             {
-
-                
                 var modalWindow = new BuddyModalWindow(SelectedBuddy);
                 modalWindow.Owner = Application.Current.MainWindow; // Ensure it's modal to the main window
 
                 bool? dialogResult = modalWindow.ShowDialog();
-
 
                 if (dialogResult == true)
                 {
@@ -115,7 +120,5 @@ namespace CodeBuddies.ViewModels
             buddies.Remove(selectedBuddy);
             buddies.Insert(0, selectedBuddy);
         }
-
-        
     }
 }

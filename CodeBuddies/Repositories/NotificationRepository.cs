@@ -1,7 +1,7 @@
-﻿using CodeBuddies.Models.Entities;
-using CodeBuddies.MVVM;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
+using CodeBuddies.Models.Entities;
+using CodeBuddies.MVVM;
 
 namespace CodeBuddies.Repositories
 {
@@ -9,7 +9,6 @@ namespace CodeBuddies.Repositories
     {
         public NotificationRepository() : base()
         {
-
         }
 
         public List<INotification> GetAll()
@@ -25,7 +24,6 @@ namespace CodeBuddies.Repositories
 
             foreach (DataRow notificationRow in notificationDataSet.Tables["Notifications"].Rows)
             {
-
                 INotification currentNotification;
 
                 if (notificationRow["notification_type"].ToString() == "invite")
@@ -35,11 +33,9 @@ namespace CodeBuddies.Repositories
                 else
                 {
                     currentNotification = new InfoNotification((long)notificationRow["id"], (DateTime)notificationRow["notification_timestamp"], notificationRow["notification_type"].ToString(), notificationRow["notification_status"].ToString(), notificationRow["notification_description"].ToString(), (long)notificationRow["sender_id"], (long)notificationRow["receiver_id"], (long)notificationRow["session_id"]);
-
                 }
 
                 notifications.Add(currentNotification);
-
             }
 
             return notifications;
@@ -59,7 +55,6 @@ namespace CodeBuddies.Repositories
 
             foreach (DataRow notificationRow in notificationDataSet.Tables["Notifications"].Rows)
             {
-
                 INotification currentNotification;
 
                 if (notificationRow["notification_type"].ToString() == "invite")
@@ -69,11 +64,9 @@ namespace CodeBuddies.Repositories
                 else
                 {
                     currentNotification = new InfoNotification((long)notificationRow["id"], (DateTime)notificationRow["notification_timestamp"], notificationRow["notification_type"].ToString(), notificationRow["notification_status"].ToString(), notificationRow["notification_description"].ToString(), (long)notificationRow["sender_id"], (long)notificationRow["receiver_id"], (long)notificationRow["session_id"]);
-
                 }
 
                 notifications.Add(currentNotification);
-
             }
 
             return notifications;
@@ -104,7 +97,6 @@ namespace CodeBuddies.Repositories
                 }
             }
 
-
             // Increment the maximum ID to get a free ID
             return maxId + 1;
         }
@@ -131,8 +123,6 @@ namespace CodeBuddies.Repositories
 
                 // Execute the SQL command
                 saveCommand.ExecuteNonQuery();
-
-
             }
         }
     }
