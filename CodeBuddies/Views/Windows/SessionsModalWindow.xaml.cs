@@ -1,8 +1,4 @@
-﻿using CodeBuddies.Models.Entities;
-using CodeBuddies.MVVM;
-using CodeBuddies.Resources.Data;
-using CodeBuddies.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,10 +11,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CodeBuddies.Models.Entities;
+using CodeBuddies.MVVM;
+using CodeBuddies.Resources.Data;
+using CodeBuddies.ViewModels;
 
 namespace CodeBuddies.Views.Windows
 {
-   
     public partial class SessionsModalWindow : Window
     {
         private SessionsListViewModel viewModel;
@@ -31,9 +30,5 @@ namespace CodeBuddies.Views.Windows
             DataContext = viewModel;
         }
         public ICommand CloseCommand => new RelayCommand<Buddy>(_ => Close());
-
-
-
-
     }
 }

@@ -21,6 +21,11 @@ namespace CodeBuddies.Models.Entities
             IsAccepted = isAccepted;
         }
 
+        public InviteNotification()
+        {
+
+        }
+
         protected override void MarkNotification()
         {
             // mark as declined/accepted

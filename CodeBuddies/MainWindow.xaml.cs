@@ -1,7 +1,6 @@
-﻿using CodeBuddies.Models.Entities;
+﻿using System.Windows;
+using CodeBuddies.Models.Entities;
 using CodeBuddies.Repositories;
-using System.Windows;
-
 
 namespace CodeBuddies
 {
@@ -14,6 +13,5 @@ namespace CodeBuddies
         {
             InitializeComponent();
         }
-
     }
 }

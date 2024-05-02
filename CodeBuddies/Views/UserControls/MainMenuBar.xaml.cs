@@ -20,9 +20,7 @@ namespace CodeBuddies.Views.UserControls
         public MainMenuBar()
         {
             InitializeComponent();
-           
         }
-
 
         private void NewSessionButtonClicked(object sender, RoutedEventArgs e)
         {

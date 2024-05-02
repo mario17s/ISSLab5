@@ -1,8 +1,8 @@
-﻿using CodeBuddies.Repositories;
+﻿using System.Windows;
+using System.Windows.Controls;
+using CodeBuddies.Repositories;
 using CodeBuddies.Resources.Data;
 using CodeBuddies.ViewModels;
-using System.Windows;
-using System.Windows.Controls;
 using static CodeBuddies.Models.Validators.ValidationForNewSession;
 
 namespace CodeBuddies.Views.UserControls
@@ -21,13 +21,12 @@ namespace CodeBuddies.Views.UserControls
 
         private void SessionNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //take the text from the textbox and store it in a variable
-            //check if the text is empty
-            //if it is empty, make the button disabled
-            //if it is not empty, make the button enabled
-
+            // Take the text from the textbox and store it in a variable
+            // check if the text is empty
+            // if it is empty, make the button disabled
+            // if it is not empty, make the button enabled
             string sessionName = SessionNameTextBox.Text;
-            if (sessionName == "")
+            if (string.IsNullOrEmpty(sessionName))
             {
                 CreateSessionButton.IsEnabled = false;
             }
@@ -41,7 +40,7 @@ namespace CodeBuddies.Views.UserControls
         {
             string maxParticipants = MaxParticipantsTextBox.Text;
 
-            if (maxParticipants == "")
+            if (string.IsNullOrEmpty(maxParticipants))
             {
                 CreateSessionButton.IsEnabled = false;
             }
@@ -49,20 +48,18 @@ namespace CodeBuddies.Views.UserControls
             {
                 CreateSessionButton.IsEnabled = true;
             }
-
         }
 
         private void CreateSessionButton_Click(object sender, RoutedEventArgs e)
         {
-            //take the text from the textbox and store it in a variable
-            //check if the text is empty
-            //if it is empty, make the button disabled
-            //if it is not empty, make the button enabled
-
+            // Take the text from the textbox and store it in a variable
+            // check if the text is empty
+            // if it is empty, make the button disabled
+            // if it is not empty, make the button enabled
             string sessionName = SessionNameTextBox.Text;
             string maxParticipants = MaxParticipantsTextBox.Text;
 
-            if (sessionName == "" || maxParticipants == "")
+            if (string.IsNullOrEmpty(sessionName) || string.IsNullOrEmpty(maxParticipants))
             {
                 MessageBox.Show("Please enter a session name and max participants");
                 CreateSessionButton.IsEnabled = false;
@@ -72,28 +69,26 @@ namespace CodeBuddies.Views.UserControls
                 CreateSessionButton.IsEnabled = true;
             }
 
-            //create a new session with the session name and max participants
-            //add the session to the list of sessions
-            //close the popup
-
-            //generate a new session id randomly
-
+            // Create a new session with the session name and max participants
+            // add the session to the list of sessions
+            // close the popup
+            // generate a new session id randomly
             try
             {
                 viewModel.AddNewSession(sessionName, maxParticipants);
 
-                if (sessionName != "" && maxParticipants != "")
+                if (!string.IsNullOrEmpty(sessionName) && !string.IsNullOrEmpty(maxParticipants))
                 {
                     SessionWindow sessionWindow = new SessionWindow();
                     sessionWindow.ShowDialog();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
-            //close the popup
+            // close the popup
             this.Close();
         }
     }

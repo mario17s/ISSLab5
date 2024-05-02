@@ -1,7 +1,6 @@
-﻿using CodeBuddies.Repositories;
-using CodeBuddies.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CodeBuddies.Models.Entities;
-using System.Collections.ObjectModel;
-
+using CodeBuddies.Repositories;
+using CodeBuddies.ViewModels;
 
 namespace CodeBuddies.Views.UserControls
 {
@@ -45,18 +44,16 @@ namespace CodeBuddies.Views.UserControls
 
         private void OpenExistingFileButton_Clicked(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void CreateNewFileButton_Clicked(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void OpenBoardButton_Clicked(object sender, RoutedEventArgs e)
         {
             DrawingBoardButtonClicked?.Invoke(this, EventArgs.Empty);
-            
+
             if (OpenBoardButton.Content.ToString() == "Open Board")
             {
                 OpenBoardButton.Content = "Close Board";
@@ -65,43 +62,39 @@ namespace CodeBuddies.Views.UserControls
             {
                 OpenBoardButton.Content = "Open Board";
             }
-
         }
 
         private void ContributionChartButton_Clicked(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void LeaveSessionButton_Clicked(object sender, RoutedEventArgs e)
         {
-            //close the whole session window
+            // close the whole session window
             Window.GetWindow(this).Close();
         }
 
         private void SeeCodeReviewSectionButton_Clicked(object sender, RoutedEventArgs e)
         {
-
             // Check if sessionRepository is not null
             if (sessionRepository != null)
             {
                 // Load the CodeReviewSection
                 List<ICodeReviewSection> codeReviewSections = sessionRepository.GetCodeReviewSectionsForSpecificSession(1);
 
-                //transform the code review sections into obsarvable collection
+                // transform the code review sections into obsarvable collection
                 ObservableCollection<ICodeReviewSection> codeReviewSectionsObservable = new ObservableCollection<ICodeReviewSection>(codeReviewSections);
 
                 // Add the CodeReviewSection to the Grid
                 GridTextEditor.Children.Clear();
 
-                //add the code review section to the grid
+                // add the code review section to the grid
                 foreach (var codeReviewSection in codeReviewSectionsObservable)
                 {
                     TextBlock textBlock = new TextBlock();
                     textBlock.Text = codeReviewSection.Messages.ToString(); // Set some property of CodeReviewSection to display
                     GridTextEditor.Children.Add(textBlock);
                 }
-
             }
             else
             {

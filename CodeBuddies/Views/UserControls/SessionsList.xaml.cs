@@ -1,5 +1,5 @@
-﻿using CodeBuddies.ViewModels;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
+using CodeBuddies.ViewModels;
 
 namespace CodeBuddies.Views.UserControls
 {

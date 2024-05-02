@@ -34,7 +34,7 @@ namespace CodeBuddies.ViewModels
             notificationService = new NotificationService(notificationRepository);
             ISessionRepository sessionRepository = new SessionRepository();
             sessionService = new SessionService(sessionRepository);
-            Notifications = new ObservableCollection<INotification>(notificationService.getAllNotificationsForCurrentBuddy());
+            Notifications = new ObservableCollection<INotification>(notificationService.GetAllNotificationsForCurrentBuddy());
 
         }
         private void AcceptInvite(INotification notification)
@@ -49,7 +49,7 @@ namespace CodeBuddies.ViewModels
             }
             catch (EntityAlreadyExists error)
             {
-                ShowErrorPopup("You are already a member of the session " + sessionService.getSessionName(notification.SessionId));
+                ShowErrorPopup("You are already a member of the session " + sessionService.GetSessionName(notification.SessionId));
             }
             finally
             {
@@ -70,15 +70,15 @@ namespace CodeBuddies.ViewModels
         private void SendDeclinedInfoNotification(INotification notification)
         {
             // Reverse sender and receiver ids because this notification goes backwards
-            INotification declinedNotification = new InfoNotification(notificationService.getFreeNotificationId(), DateTime.Now, "rejectInformation", "pending", Constants.CLIENT_NAME + " rejected your invitation", notification.ReceiverId, notification.SenderId, notification.SessionId);
-            notificationService.addNotification(declinedNotification);
+            INotification declinedNotification = new InfoNotification(notificationService.GetFreeNotificationId(), DateTime.Now, "rejectInformation", "pending", Constants.CLIENT_NAME + " rejected your invitation", notification.ReceiverId, notification.SenderId, notification.SessionId);
+            notificationService.AddNotification(declinedNotification);
         }
 
         private void SendAcceptedInfoNotification(INotification notification)
         {
             // Reverse sender and receiver ids because this notification goes backwards
-            INotification acceptedNotification = new InfoNotification(notificationService.getFreeNotificationId(), DateTime.Now, "successInformation", "pending", Constants.CLIENT_NAME + " accepted your invitation!", notification.ReceiverId, notification.SenderId, notification.SessionId);
-            notificationService.addNotification(acceptedNotification);
+            INotification acceptedNotification = new InfoNotification(notificationService.GetFreeNotificationId(), DateTime.Now, "successInformation", "pending", Constants.CLIENT_NAME + " accepted your invitation!", notification.ReceiverId, notification.SenderId, notification.SessionId);
+            notificationService.AddNotification(acceptedNotification);
         }
         private void ShowErrorPopup(string errorMessage)
         {
@@ -92,11 +92,11 @@ namespace CodeBuddies.ViewModels
             // remove from db
             try
             { 
-                notificationService.removeNotification(notification);
+                notificationService.RemoveNotification(notification);
             } catch(Exception ex)
             {
                 // if failure, fetch again
-                Notifications = new ObservableCollection<INotification>(notificationService.getAllNotificationsForCurrentBuddy());
+                Notifications = new ObservableCollection<INotification>(notificationService.GetAllNotificationsForCurrentBuddy());
             }
         }
     }

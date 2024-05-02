@@ -27,7 +27,7 @@ namespace CodeBuddies.Services
             sessionRepository = repo;
         }
 
-        public List<ISession> getAllSessionsForCurrentBuddy()
+        public List<ISession> GetAllSessionsForCurrentBuddy()
         {
             return sessionRepository.GetAllSessionsOfABuddy(Constants.CLIENT_BUDDY_ID);
         }
@@ -49,7 +49,7 @@ namespace CodeBuddies.Services
             sessionRepository.AddBuddyMemberToSession(receiverId, sessionId);
         }
 
-        public string getSessionName(long sessionId)
+        public string GetSessionName(long sessionId)
         {
             return sessionRepository.GetSessionName(sessionId);
         }

@@ -24,22 +24,22 @@ namespace CodeBuddies.Services
             notificationRepository = repo;
         }
 
-        public List<INotification> getAllNotificationsForCurrentBuddy()
+        public List<INotification> GetAllNotificationsForCurrentBuddy()
         {
             return notificationRepository.GetAllByBuddyId(Constants.CLIENT_BUDDY_ID);
         }
 
-        public long getFreeNotificationId()
+        public long GetFreeNotificationId()
         {
             return notificationRepository.GetFreeNotificationId();
         }
 
-        public void removeNotification(INotification notification)
+        public void RemoveNotification(INotification notification)
         {
             notificationRepository.RemoveById(notification.NotificationId);
         }
 
-        public void addNotification(INotification notification)
+        public void AddNotification(INotification notification)
         {
             notificationRepository.Save(notification);
         }

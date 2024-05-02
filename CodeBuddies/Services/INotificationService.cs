@@ -7,9 +7,9 @@ namespace CodeBuddies.Services
     {
         INotificationRepository NotificationRepository { get; set; }
 
-        void addNotification(INotification notification);
-        List<INotification> getAllNotificationsForCurrentBuddy();
-        long getFreeNotificationId();
-        void removeNotification(INotification notification);
+        void AddNotification(INotification notification);
+        List<INotification> GetAllNotificationsForCurrentBuddy();
+        long GetFreeNotificationId();
+        void RemoveNotification(INotification notification);
     }
 }

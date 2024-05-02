@@ -10,5 +10,4 @@ namespace CodeBuddies
     public partial class App : Application
     {
     }
-
 }

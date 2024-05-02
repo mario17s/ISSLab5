@@ -29,7 +29,7 @@ namespace CodeBuddies.ViewModels
             GlobalEvents.BuddyAddedToSession += HandleBuddyAddedToSession;
             ISessionRepository sessionRepository = new SessionRepository();
             sessionService = new SessionService(sessionRepository);
-            Sessions = new ObservableCollection<ISession>(sessionService.getAllSessionsForCurrentBuddy());
+            Sessions = new ObservableCollection<ISession>(sessionService.GetAllSessionsForCurrentBuddy());
 
         }
 
@@ -51,7 +51,7 @@ namespace CodeBuddies.ViewModels
             if (string.IsNullOrWhiteSpace(SearchBySessionName))
             {
                 Sessions.Clear();
-                Sessions = new ObservableCollection<ISession>(sessionService.getAllSessionsForCurrentBuddy());
+                Sessions = new ObservableCollection<ISession>(sessionService.GetAllSessionsForCurrentBuddy());
             }
             else
             {
@@ -61,7 +61,7 @@ namespace CodeBuddies.ViewModels
 
         public void HandleBuddyAddedToSession(long buddyId, long sessionId)
         {
-            Sessions = new ObservableCollection<ISession>(sessionService.getAllSessionsForCurrentBuddy());
+            Sessions = new ObservableCollection<ISession>(sessionService.GetAllSessionsForCurrentBuddy());
         }
         public void LeaveSession(ISession session)
         {

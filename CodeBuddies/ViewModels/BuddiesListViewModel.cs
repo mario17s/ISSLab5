@@ -62,7 +62,7 @@ namespace CodeBuddies.ViewModels
             }
             else
             {
-                Buddies = new ObservableCollection<IBuddy>(service.filterBuddies(SearchText));
+                Buddies = new ObservableCollection<IBuddy>(service.FilterBuddies(SearchText));
             }
 
         }
@@ -70,7 +70,7 @@ namespace CodeBuddies.ViewModels
 
         private void LoadBuddies()
         {
-            List<IBuddy> buddies = service.getAllBuddies();
+            List<IBuddy> buddies = service.GetAllBuddies();
             Buddies = new ObservableCollection<IBuddy>(buddies);
         }
 

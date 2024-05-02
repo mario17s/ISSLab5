@@ -80,6 +80,11 @@ namespace CodeBuddies.Models.Entities
             SessionId = sessionId;
         }
 
+        public Notification()
+        {
+
+        }
+
         protected abstract void MarkNotification();
     }
 }

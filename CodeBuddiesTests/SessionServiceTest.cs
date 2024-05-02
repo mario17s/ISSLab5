@@ -75,7 +75,7 @@ namespace CodeBuddiesTests
             mockSessionionRepository.Setup(repository => repository.GetAllSessionsOfABuddy(buddyId)).Returns(expectedSessions);
             var sessionService = new SessionService(mockSessionionRepository.Object);
 
-            var notifications = sessionService.getAllSessionsForCurrentBuddy();
+            var notifications = sessionService.GetAllSessionsForCurrentBuddy();
 
             Assert.That(notifications, Is.EqualTo(expectedSessions));
         }
@@ -177,7 +177,7 @@ namespace CodeBuddiesTests
             mockRepository.Setup(repo => repo.GetSessionName(sessionId)).Returns(expectedSessionName);
             var sessionService = new SessionService(mockRepository.Object);
 
-            string sessionName = sessionService.getSessionName(sessionId);
+            string sessionName = sessionService.GetSessionName(sessionId);
 
             Assert.That(sessionName, Is.EqualTo(expectedSessionName));
         }
@@ -190,7 +190,7 @@ namespace CodeBuddiesTests
             mockRepository.Setup(repo => repo.GetSessionName(sessionId)).Returns((string)null);
             var sessionService = new SessionService(mockRepository.Object);
 
-            string sessionName = sessionService.getSessionName(sessionId);
+            string sessionName = sessionService.GetSessionName(sessionId);
 
             Assert.IsNull(sessionName);
         }

@@ -42,12 +42,12 @@ namespace CodeBuddies.Services
             InactiveBuddies = budyRepository.GetInactiveBuddies();
         }
 
-        public List<IBuddy> getAllBuddies()
+        public List<IBuddy> GetAllBuddies()
         {
             return BuddyRepository.GetAllBuddies();
         }
 
-        public List<IBuddy> filterBuddies(string searchText)
+        public List<IBuddy> FilterBuddies(string searchText)
         {
             List<IBuddy> filteredBuddies = new List<IBuddy>();
             foreach (var buddy in BuddyRepository.GetAllBuddies())
@@ -60,13 +60,13 @@ namespace CodeBuddies.Services
             return filteredBuddies;
         }
 
-        public void refreshData()
+        public void RefreshData()
         {
             ActiveBuddies = BuddyRepository.GetActiveBuddies();
             InactiveBuddies = BuddyRepository.GetInactiveBuddies();
         }
 
-        public IBuddy changeBuddyStatus(IBuddy buddy)
+        public IBuddy ChangeBuddyStatus(IBuddy buddy)
         {
             IBuddy changedBuddy = BuddyRepository.UpdateBuddyStatus(buddy);
             return changedBuddy;

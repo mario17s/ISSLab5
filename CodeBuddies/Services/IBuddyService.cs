@@ -8,10 +8,9 @@ namespace CodeBuddies.Services
         List<IBuddy> ActiveBuddies { get; set; }
         IBuddyRepository BuddyRepository { get; set; }
         List<IBuddy> InactiveBuddies { get; set; }
-
-        IBuddy changeBuddyStatus(IBuddy buddy);
-        List<IBuddy> filterBuddies(string searchText);
-        List<IBuddy> getAllBuddies();
-        void refreshData();
+        IBuddy ChangeBuddyStatus(IBuddy buddy);
+        List<IBuddy> FilterBuddies(string searchText);
+        List<IBuddy> GetAllBuddies();
+        void RefreshData();
     }
 }

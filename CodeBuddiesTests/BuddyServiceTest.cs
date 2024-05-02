@@ -178,7 +178,7 @@ namespace CodeBuddiesTests
                 mockBuddyRepository.Setup(repository => repository.GetAllBuddies()).Returns(expectedBuddies);
                 var buddyService = new BuddyService(mockBuddyRepository.Object);
 
-                var allBuddies = buddyService.getAllBuddies();
+                var allBuddies = buddyService.GetAllBuddies();
 
                 Assert.That(allBuddies, Is.EqualTo(expectedBuddies));
             }
@@ -206,7 +206,7 @@ namespace CodeBuddiesTests
                 mockRepository.Setup(repository => repository.GetAllBuddies()).Returns(allBuddies);
                 var buddyService = new BuddyService(mockRepository.Object);
 
-                var resultedBuddies = buddyService.filterBuddies(searchText);
+                var resultedBuddies = buddyService.FilterBuddies(searchText);
 
                 Assert.IsTrue(resultedBuddies.TrueForAll(buddy => buddy.BuddyName.Contains(searchText)));
             }
@@ -227,7 +227,7 @@ namespace CodeBuddiesTests
                 mockBuddyRepository.Setup(repository => repository.GetActiveBuddies()).Returns(expectedActiveBuddies);
                 var buddyService = new BuddyService(mockBuddyRepository.Object);
 
-                buddyService.refreshData();
+                buddyService.RefreshData();
 
                 Assert.That(buddyService.ActiveBuddies, Is.EqualTo(expectedActiveBuddies));
             }
@@ -248,7 +248,7 @@ namespace CodeBuddiesTests
                 mockBuddyRepository.Setup(repository => repository.GetInactiveBuddies()).Returns(expectedInactiveBuddies);
                 var buddyService = new BuddyService(mockBuddyRepository.Object);
 
-                buddyService.refreshData();
+                buddyService.RefreshData();
 
                 Assert.That(buddyService.InactiveBuddies, Is.EqualTo(expectedInactiveBuddies));
             }
@@ -267,7 +267,7 @@ namespace CodeBuddiesTests
                               });
                 var buddyService = new BuddyService(mockBuddyRepository.Object);
 
-                var changedBuddy = buddyService.changeBuddyStatus(buddyToUpdate.Object);
+                var changedBuddy = buddyService.ChangeBuddyStatus(buddyToUpdate.Object);
 
                 Assert.That(changedBuddy.Status, Is.EqualTo("active"));
             }
@@ -286,7 +286,7 @@ namespace CodeBuddiesTests
                               });
                 var buddyService = new BuddyService(mockBuddyRepository.Object);
 
-                var changedBuddy = buddyService.changeBuddyStatus(buddyToUpdate.Object);
+                var changedBuddy = buddyService.ChangeBuddyStatus(buddyToUpdate.Object);
 
                 Assert.That(changedBuddy.Status, Is.EqualTo("inactive"));
             }

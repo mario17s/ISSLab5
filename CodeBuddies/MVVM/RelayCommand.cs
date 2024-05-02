@@ -5,7 +5,6 @@ namespace CodeBuddies.MVVM
 {
     public class RelayCommand<T> : ICommand
     {
-
         private Action<T> execute;
         private Func<T, bool> canExecute;
 

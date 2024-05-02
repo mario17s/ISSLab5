@@ -56,7 +56,7 @@ namespace CodeBuddies.ViewModels
 
         public void Refresh()
         {
-            BuddyService.refreshData();
+            BuddyService.RefreshData();
             OnPropertyChanged("ActiveBuddies");
             OnPropertyChanged("InactiveBuddies");
             OnPropertyChanged("Active");
@@ -65,7 +65,7 @@ namespace CodeBuddies.ViewModels
 
         public void UpdateBuddyStatus(Buddy buddy)
         {
-            BuddyService.changeBuddyStatus(buddy);
+            BuddyService.ChangeBuddyStatus(buddy);
             Refresh();
         }
     }

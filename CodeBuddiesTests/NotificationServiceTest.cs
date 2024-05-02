@@ -66,7 +66,7 @@ namespace CodeBuddiesTests
             mockNotificationRepository.Setup(repository => repository.GetAllByBuddyId(buddyId)).Returns(expectedNotifications);
             var notificationService = new NotificationService(mockNotificationRepository.Object);
 
-            var notifications = notificationService.getAllNotificationsForCurrentBuddy();
+            var notifications = notificationService.GetAllNotificationsForCurrentBuddy();
 
             Assert.That(notifications, Is.EqualTo(expectedNotifications));
         }
@@ -79,7 +79,7 @@ namespace CodeBuddiesTests
             mockRepository.Setup(repository => repository.GetFreeNotificationId()).Returns(expectedId);
             var notificationService = new NotificationService(mockRepository.Object);
 
-            long actualId = notificationService.getFreeNotificationId();
+            long actualId = notificationService.GetFreeNotificationId();
 
             Assert.That(actualId, Is.EqualTo(expectedId));
         }
@@ -96,7 +96,7 @@ namespace CodeBuddiesTests
             mockNotificationRepository.Setup(repository => repository.GetAllByBuddyId(buddyId)).Returns((List<INotification>)null);
             var notificationService = new NotificationService(mockNotificationRepository.Object);
 
-            notificationService.removeNotification(notification.Object);
+            notificationService.RemoveNotification(notification.Object);
 
             Assert.IsNull(mockNotificationRepository.Object.GetAllByBuddyId(notificationId));
         }
@@ -116,7 +116,7 @@ namespace CodeBuddiesTests
             mockNotificationRepository.Setup(repository => repository.GetAllByBuddyId(buddyId)).Returns(notifications);
             var notificationService = new NotificationService(mockNotificationRepository.Object);
 
-            notificationService.addNotification(notification);
+            notificationService.AddNotification(notification);
 
             Assert.Contains(notification, mockNotificationRepository.Object.GetAllByBuddyId(buddyId));
         }

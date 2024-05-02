@@ -28,7 +28,7 @@ namespace CodeBuddies.Views.UserControls
 
         private void ReviewCodeButton_Clicked(object sender, RoutedEventArgs e)
         {
-            //Create a new instance of the CodeReview UserControl
+            // Create a new instance of the CodeReview UserControl
             CodeReview codeReview = new CodeReview();
 
             // Show the CodeReview UserControl in a dialog window
@@ -47,23 +47,22 @@ namespace CodeBuddies.Views.UserControls
             codeReviewWindow.ShowDialog();
         }
 
-           /* private void ReviewCodeButton_Clicked(object sender, RoutedEventArgs e)
-            {
-                // Create a new instance of the CodeReview UserControl
-                CodeReview codeReview = new CodeReview();
+        /* private void ReviewCodeButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            // Create a new instance of the CodeReview UserControl
+            CodeReview codeReview = new CodeReview();
 
-                // Remove the buttons from the grid
-                buttonGrid.Children.Remove(reviewCodeButton);
-                buttonGrid.Children.Remove(chatButton);
+            // Remove the buttons from the grid
+            buttonGrid.Children.Remove(reviewCodeButton);
+            buttonGrid.Children.Remove(chatButton);
 
-                // Add the CodeReview UserControl to the grid
-                Grid.SetRow(codeReview, 1);
-                buttonGrid.Children.Add(codeReview);
-            }*/
+            // Add the CodeReview UserControl to the grid
+            Grid.SetRow(codeReview, 1);
+            buttonGrid.Children.Add(codeReview);
+        }*/
 
         private void ChatButton_Clicked(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }
