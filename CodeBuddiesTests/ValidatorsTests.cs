@@ -38,9 +38,9 @@ namespace CodeBuddiesTests
         {
             string validMaxNoOfBuddies = "5";
             var validatorMock = new Mock<IValidationForNewSession>();
-            validatorMock.Setup(x => x.ValidateMaxNoOfBuddies(validMaxNoOfBuddies));
+            validatorMock.Setup(x => x.ValidateMaxNumberOfBuddies(validMaxNoOfBuddies));
 
-            Assert.DoesNotThrow(() => validatorMock.Object.ValidateMaxNoOfBuddies(validMaxNoOfBuddies));
+            Assert.DoesNotThrow(() => validatorMock.Object.ValidateMaxNumberOfBuddies(validMaxNoOfBuddies));
         }
 
         [Test]
@@ -48,9 +48,9 @@ namespace CodeBuddiesTests
         {
             string invalidMaxNoOfBuddies = "invalid";
             var validatorMock = new Mock<IValidationForNewSession>();
-            validatorMock.Setup(x => x.ValidateMaxNoOfBuddies(invalidMaxNoOfBuddies)).Throws<ArgumentException>();
+            validatorMock.Setup(x => x.ValidateMaxNumberOfBuddies(invalidMaxNoOfBuddies)).Throws<ArgumentException>();
 
-            Assert.Throws<ArgumentException>(() => validatorMock.Object.ValidateMaxNoOfBuddies(invalidMaxNoOfBuddies));
+            Assert.Throws<ArgumentException>(() => validatorMock.Object.ValidateMaxNumberOfBuddies(invalidMaxNoOfBuddies));
         }
 
         [Test]
@@ -58,9 +58,9 @@ namespace CodeBuddiesTests
         {
             string outOfRangeMaxNoOfBuddies = "100";
             var validatorMock = new Mock<IValidationForNewSession>();
-            validatorMock.Setup(x => x.ValidateMaxNoOfBuddies(outOfRangeMaxNoOfBuddies)).Throws<ArgumentOutOfRangeException>();
+            validatorMock.Setup(x => x.ValidateMaxNumberOfBuddies(outOfRangeMaxNoOfBuddies)).Throws<ArgumentOutOfRangeException>();
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => validatorMock.Object.ValidateMaxNoOfBuddies(outOfRangeMaxNoOfBuddies));
+            Assert.Throws<ArgumentOutOfRangeException>(() => validatorMock.Object.ValidateMaxNumberOfBuddies(outOfRangeMaxNoOfBuddies));
         }
 
         [Test]

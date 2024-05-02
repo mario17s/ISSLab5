@@ -1,5 +1,5 @@
-﻿using CodeBuddies.Models.Entities;
-using CodeBuddies.Repositories;
+﻿using CodeBuddies.Models.Entities.Interfaces;
+using CodeBuddies.Repositories.Interfaces;
 using Moq;
 using System;
 using System.Collections.Generic;

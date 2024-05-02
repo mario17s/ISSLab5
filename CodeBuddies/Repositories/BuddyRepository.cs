@@ -1,7 +1,9 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 using CodeBuddies.Models.Entities;
+using CodeBuddies.Models.Entities.Interfaces;
 using CodeBuddies.MVVM;
+using CodeBuddies.Repositories.Interfaces;
 namespace CodeBuddies.Repositories
 {
     public class BuddyRepository : DBRepositoryBase, IBuddyRepository
@@ -10,6 +12,7 @@ namespace CodeBuddies.Repositories
         {
         }
 
+        #region Getters
         public List<IBuddy> GetAllBuddies()
         {
             List<IBuddy> buddies = new List<IBuddy>();
@@ -67,6 +70,7 @@ namespace CodeBuddies.Repositories
         {
             return GetAllBuddies().Where(buddy => buddy.Status == "inactive").ToList();
         }
+        #endregion
 
         public IBuddy UpdateBuddyStatus(IBuddy buddy)
         {

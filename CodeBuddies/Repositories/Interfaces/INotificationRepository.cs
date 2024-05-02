@@ -1,6 +1,6 @@
-﻿using CodeBuddies.Models.Entities;
+﻿using CodeBuddies.Models.Entities.Interfaces;
 
-namespace CodeBuddies.Repositories
+namespace CodeBuddies.Repositories.Interfaces
 {
     public interface INotificationRepository
     {

@@ -4,9 +4,12 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using CodeBuddies.Models.Entities;
+using CodeBuddies.Models.Entities.Interfaces;
 using CodeBuddies.MVVM;
 using CodeBuddies.Repositories;
+using CodeBuddies.Repositories.Interfaces;
 using CodeBuddies.Services;
+using CodeBuddies.Services.Interfaces;
 using CodeBuddies.Views;
 using CodeBuddies.Views.Windows;
 using SessionsModalWindow = CodeBuddies.Views.Windows.SessionsModalWindow;
@@ -15,18 +18,15 @@ namespace CodeBuddies.ViewModels
 {
     public class BuddiesListViewModel : ViewModelBase
     {
+        #region Fields
         private ObservableCollection<IBuddy> buddies;
-        public ICommand OpenPopupCommand { get; }
         private IBuddyService service;
+        private Buddy selectedBuddy;
+        private string searchText;
 
-        public IBuddyService Service
-        {
-            get { return service; }
-            set { service = value; }
-        }
+        #endregion
 
-        public RelayCommand<IBuddy> OpenModalCommand => new RelayCommand<IBuddy>(_ => OpenModal());
-
+        #region Properties
         public ObservableCollection<IBuddy> Buddies
         {
             get
@@ -39,9 +39,21 @@ namespace CodeBuddies.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private string searchText;
-
+        public ICommand OpenPopupCommand { get; }
+        public IBuddyService Service
+        {
+            get { return service; }
+            set { service = value; }
+        }
+        public Buddy SelectedBuddy
+        {
+            get => selectedBuddy;
+            set
+            {
+                selectedBuddy = value;
+                OnPropertyChanged();
+            }
+        }
         public string SearchText
         {
             get
@@ -55,6 +67,11 @@ namespace CodeBuddies.ViewModels
                 OnPropertyChanged();
             }
         }
+        #endregion
+
+        #region Lambda Commands
+        public RelayCommand<IBuddy> OpenModalCommand => new RelayCommand<IBuddy>(_ => OpenModal());
+        #endregion
 
         public BuddiesListViewModel()
         {
@@ -64,6 +81,7 @@ namespace CodeBuddies.ViewModels
             LoadBuddies();
         }
 
+        #region Methods
         private void FilterBuddies()
         {
             if (string.IsNullOrWhiteSpace(SearchText))
@@ -80,17 +98,6 @@ namespace CodeBuddies.ViewModels
         {
             List<IBuddy> buddies = service.GetAllBuddies();
             Buddies = new ObservableCollection<IBuddy>(buddies);
-        }
-
-        private Buddy selectedBuddy;
-        public Buddy SelectedBuddy
-        {
-            get => selectedBuddy;
-            set
-            {
-                selectedBuddy = value;
-                OnPropertyChanged();
-            }
         }
 
         private void OpenModal()
@@ -120,5 +127,6 @@ namespace CodeBuddies.ViewModels
             buddies.Remove(selectedBuddy);
             buddies.Insert(0, selectedBuddy);
         }
+        #endregion
     }
 }

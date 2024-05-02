@@ -7,7 +7,6 @@ namespace CodeBuddies.MVVM
     public abstract class DBRepositoryBase
     {
         protected SqlConnection sqlConnection = new SqlConnection(Constants.CONNECTION_STRING);
-
         protected SqlDataAdapter dataAdapter;
 
         protected DBRepositoryBase()

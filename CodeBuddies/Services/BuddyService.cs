@@ -4,36 +4,37 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CodeBuddies.Models.Entities;
-using CodeBuddies.Repositories;
+using CodeBuddies.Models.Entities.Interfaces;
+using CodeBuddies.Repositories.Interfaces;
+using CodeBuddies.Services.Interfaces;
 
 namespace CodeBuddies.Services
 {
     public class BuddyService : IBuddyService
     {
+        #region Fields
         private IBuddyRepository budyRepository;
+        private List<IBuddy> activeBuddies;
+        private List<IBuddy> inactiveBuddies;
+        #endregion
 
+        #region Properties
         public IBuddyRepository BuddyRepository
         {
             get { return budyRepository; }
             set { budyRepository = value; }
         }
-
-        private List<IBuddy> activeBuddies;
-
         public List<IBuddy> ActiveBuddies
         {
             get { return activeBuddies; }
             set { activeBuddies = value; }
         }
-
-        private List<IBuddy> inactiveBuddies;
-
         public List<IBuddy> InactiveBuddies
         {
             get { return inactiveBuddies; }
             set { inactiveBuddies = value; }
         }
+        #endregion
 
         public BuddyService(IBuddyRepository repo)
         {
@@ -42,6 +43,7 @@ namespace CodeBuddies.Services
             InactiveBuddies = budyRepository.GetInactiveBuddies();
         }
 
+        #region Getters
         public List<IBuddy> GetAllBuddies()
         {
             return BuddyRepository.GetAllBuddies();
@@ -59,12 +61,15 @@ namespace CodeBuddies.Services
             }
             return filteredBuddies;
         }
+        #endregion
 
+        #region Methods
         public void RefreshData()
         {
             ActiveBuddies = BuddyRepository.GetActiveBuddies();
             InactiveBuddies = BuddyRepository.GetInactiveBuddies();
         }
+        #endregion
 
         public IBuddy ChangeBuddyStatus(IBuddy buddy)
         {

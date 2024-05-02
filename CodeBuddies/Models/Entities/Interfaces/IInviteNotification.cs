@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeBuddies.Models.Entities
+namespace CodeBuddies.Models.Entities.Interfaces
 {
     public interface IInviteNotification : INotification
     {

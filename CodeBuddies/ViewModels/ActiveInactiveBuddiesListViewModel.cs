@@ -5,25 +5,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CodeBuddies.Models.Entities;
+using CodeBuddies.Models.Entities.Interfaces;
 using CodeBuddies.MVVM;
 using CodeBuddies.Repositories;
+using CodeBuddies.Repositories.Interfaces;
 using CodeBuddies.Services;
+using CodeBuddies.Services.Interfaces;
 using CodeBuddies.Views.UserControls;
 
 namespace CodeBuddies.ViewModels
 {
     public class ActiveInactiveBuddiesListViewModel : ViewModelBase
     {
+        #region Fields
         private IBuddyService buddyService;
+        private ObservableCollection<IBuddy> active = new ObservableCollection<IBuddy>();
+        private ObservableCollection<IBuddy> inactive = new ObservableCollection<IBuddy>();
+        private ObservableCollection<IBuddy> allBuddies = new ObservableCollection<IBuddy>();
+        #endregion
 
+        #region Properties
         public IBuddyService BuddyService
         {
             get { return buddyService; }
             set { buddyService = value; }
         }
-
-        private ObservableCollection<IBuddy> active = new ObservableCollection<IBuddy>();
-
         public ObservableCollection<IBuddy> Active
         {
             get
@@ -36,9 +42,6 @@ namespace CodeBuddies.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private ObservableCollection<IBuddy> inactive = new ObservableCollection<IBuddy>();
-
         public ObservableCollection<IBuddy> Inactive
         {
             get
@@ -51,9 +54,6 @@ namespace CodeBuddies.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private ObservableCollection<IBuddy> allBuddies = new ObservableCollection<IBuddy>();
-
         public ObservableCollection<IBuddy> AllBuddies
         {
             get
@@ -66,6 +66,7 @@ namespace CodeBuddies.ViewModels
                 OnPropertyChanged();
             }
         }
+        #endregion
 
         public ActiveInactiveBuddiesListViewModel()
         {

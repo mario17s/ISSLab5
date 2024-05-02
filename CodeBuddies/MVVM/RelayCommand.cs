@@ -10,6 +10,7 @@ namespace CodeBuddies.MVVM
 
         public RelayCommand(Action<T> execute, Func<T, bool> canExecute = null)
         {
+            // Handle exceptions, don't let them pass silently
             this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
             this.canExecute = canExecute;
         }

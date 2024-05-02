@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CodeBuddies.Models.Entities;
-using CodeBuddies.Repositories;
 using CodeBuddies.Services;
+using CodeBuddies.Models.Entities.Interfaces;
+using CodeBuddies.Repositories.Interfaces;
 
 namespace CodeBuddiesTests
 {

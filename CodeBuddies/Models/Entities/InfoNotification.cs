@@ -12,6 +12,9 @@ namespace CodeBuddies.Models.Entities
         {
         }
 
+        /// <summary>
+        /// Mark the notification as read
+        /// </summary>
         protected override void MarkNotification()
         {
             // mark as read

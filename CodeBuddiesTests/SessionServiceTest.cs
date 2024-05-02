@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CodeBuddies.Repositories;
 using CodeBuddies.Services;
 using CodeBuddies.Models.Entities;
 using CodeBuddies.Models.Validators;
@@ -12,6 +11,8 @@ using CodeBuddies.Models.Exceptions;
 using CodeBuddies.Views.UserControls;
 using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using System.Xml.Linq;
+using CodeBuddies.Models.Entities.Interfaces;
+using CodeBuddies.Repositories.Interfaces;
 
 namespace CodeBuddiesTests
 {
@@ -117,7 +118,7 @@ namespace CodeBuddiesTests
             string invalidMaximumNumberOfParticipants = "-1";
             var mockRepository = new Mock<ISessionRepository>();
             var mockValidator = new Mock<IValidationForNewSession>();
-            mockValidator.Setup(validator => validator.ValidateMaxNoOfBuddies(invalidMaximumNumberOfParticipants)).Throws<ArgumentOutOfRangeException>();
+            mockValidator.Setup(validator => validator.ValidateMaxNumberOfBuddies(invalidMaximumNumberOfParticipants)).Throws<ArgumentOutOfRangeException>();
             var sessionService = new SessionService(mockRepository.Object);
 
             Assert.Throws<ArgumentOutOfRangeException>(() => sessionService.AddNewSession("ValidName", invalidMaximumNumberOfParticipants));
@@ -133,7 +134,7 @@ namespace CodeBuddiesTests
             var mockValidation = new Mock<IValidationForNewSession>();
             mockValidation.Setup(validator => validator.ValidateSessionId(It.IsAny<long>()));
             mockValidation.Setup(validator => validator.ValidateSessionName(sessionName));
-            mockValidation.Setup(validator => validator.ValidateMaxNoOfBuddies(maxParticipants));
+            mockValidation.Setup(validator => validator.ValidateMaxNumberOfBuddies(maxParticipants));
             mockValidation.Setup(validator => validator.ValidateBuddyId(buddyId));
             mockRepository.Setup(repository => repository.AddNewSession(sessionName, buddyId, It.IsAny<int>())).Throws(new EntityAlreadyExists("Session already exists."));
             var sessionService = new SessionService(mockRepository.Object);

@@ -9,7 +9,7 @@ namespace CodeBuddies.Models.Validators
     public interface IValidationForNewSession
     {
         void ValidateSessionName(string sessionName);
-        void ValidateMaxNoOfBuddies(string maxNoOfBuddies);
+        void ValidateMaxNumberOfBuddies(string maxNoOfBuddies);
         void ValidateBuddyId(long buddyId);
         void ValidateSessionId(long sessionId);
     }

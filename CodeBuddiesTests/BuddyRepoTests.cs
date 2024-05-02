@@ -1,5 +1,7 @@
 ﻿using CodeBuddies.Models.Entities;
+using CodeBuddies.Models.Entities.Interfaces;
 using CodeBuddies.Repositories;
+using CodeBuddies.Repositories.Interfaces;
 using Moq;
 using NUnit.Framework;
 using System;

@@ -2,8 +2,10 @@
 using System.Data;
 using System.Data.SqlClient;
 using CodeBuddies.Models.Entities;
+using CodeBuddies.Models.Entities.Interfaces;
 using CodeBuddies.Models.Exceptions;
 using CodeBuddies.MVVM;
+using CodeBuddies.Repositories.Interfaces;
 using CodeBuddies.Resources.Data;
 using static CodeBuddies.Resources.Data.Constants;
 
@@ -15,6 +17,7 @@ namespace CodeBuddies.Repositories
         {
         }
 
+        #region Getters
         public List<IMessage> GetMessagesForSpecificSession(long sessionId)
         {
             List<IMessage> sessionMessages = new List<IMessage>();
@@ -151,25 +154,6 @@ namespace CodeBuddies.Repositories
             return sessions;
         }
 
-        public void AddBuddyMemberToSession(long buddyId, long sessionId)
-        {
-            string insertQuery = "INSERT INTO BuddiesSessions (buddy_id, session_id) VALUES (@BuddyId, @SessionId)";
-            try
-            {
-                using (SqlCommand insertCommand = new SqlCommand(insertQuery, sqlConnection))
-                {
-                    insertCommand.Parameters.AddWithValue("@BuddyId", buddyId);
-                    insertCommand.Parameters.AddWithValue("@SessionId", sessionId);
-
-                    insertCommand.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new EntityAlreadyExists(ex.Message);
-            }
-        }
-
         public string GetSessionName(long sessionId)
         {
             string sessionName = null;
@@ -221,6 +205,27 @@ namespace CodeBuddies.Repositories
 
             return freeSessionId;
         }
+        #endregion
+
+        #region Adders
+        public void AddBuddyMemberToSession(long buddyId, long sessionId)
+        {
+            string insertQuery = "INSERT INTO BuddiesSessions (buddy_id, session_id) VALUES (@BuddyId, @SessionId)";
+            try
+            {
+                using (SqlCommand insertCommand = new SqlCommand(insertQuery, sqlConnection))
+                {
+                    insertCommand.Parameters.AddWithValue("@BuddyId", buddyId);
+                    insertCommand.Parameters.AddWithValue("@SessionId", sessionId);
+
+                    insertCommand.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new EntityAlreadyExists(ex.Message);
+            }
+        }
 
         public long AddNewSession(string sessionName, long ownerId, int maxParticipants)
         {
@@ -263,5 +268,6 @@ namespace CodeBuddies.Repositories
             }
             return sessionId;
         }
+        #endregion
     }
 }

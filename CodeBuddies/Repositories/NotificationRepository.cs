@@ -1,7 +1,9 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 using CodeBuddies.Models.Entities;
+using CodeBuddies.Models.Entities.Interfaces;
 using CodeBuddies.MVVM;
+using CodeBuddies.Repositories.Interfaces;
 
 namespace CodeBuddies.Repositories
 {
@@ -11,6 +13,7 @@ namespace CodeBuddies.Repositories
         {
         }
 
+        #region Getters
         public List<INotification> GetAll()
         {
             List<INotification> notifications = new List<INotification>();
@@ -72,17 +75,6 @@ namespace CodeBuddies.Repositories
             return notifications;
         }
 
-        public void RemoveById(long notificationId)
-        {
-            string deleteNotificationQuery = "DELETE FROM Notifications WHERE id = @notificationId";
-            using (SqlCommand deleteCommand = new SqlCommand(deleteNotificationQuery, sqlConnection))
-            {
-                deleteCommand.Parameters.AddWithValue("@notificationId", notificationId);
-
-                deleteCommand.ExecuteNonQuery();
-            }
-        }
-
         public long GetFreeNotificationId()
         {
             long maxId = 0;
@@ -99,6 +91,19 @@ namespace CodeBuddies.Repositories
 
             // Increment the maximum ID to get a free ID
             return maxId + 1;
+        }
+        #endregion
+
+        #region Methods
+        public void RemoveById(long notificationId)
+        {
+            string deleteNotificationQuery = "DELETE FROM Notifications WHERE id = @notificationId";
+            using (SqlCommand deleteCommand = new SqlCommand(deleteNotificationQuery, sqlConnection))
+            {
+                deleteCommand.Parameters.AddWithValue("@notificationId", notificationId);
+
+                deleteCommand.ExecuteNonQuery();
+            }
         }
 
         public void Save(INotification notification)
@@ -125,5 +130,6 @@ namespace CodeBuddies.Repositories
                 saveCommand.ExecuteNonQuery();
             }
         }
+        #endregion
     }
 }

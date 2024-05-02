@@ -17,15 +17,15 @@ namespace CodeBuddies.Models.Validators
             }
         }
 
-        public void ValidateMaxNoOfBuddies(string maxNoOfBuddies)
+        public void ValidateMaxNumberOfBuddies(string maxNumberOfBuddiesText)
         {
-            int maxNoOfBuddiesInt;
+            int maxNumberOfBuddies;
 
-            if (!int.TryParse(maxNoOfBuddies, out maxNoOfBuddiesInt))
+            if (!int.TryParse(maxNumberOfBuddiesText, out maxNumberOfBuddies))
             {
                 throw new ArgumentException("Maximum number of buddies must be a valid integer.");
             }
-            else if (maxNoOfBuddiesInt < 0 || maxNoOfBuddiesInt > MAX_NUMBER_OF_BUDDIES_PER_SESSION)
+            else if (maxNumberOfBuddies < 0 || maxNumberOfBuddies > MAX_NUMBER_OF_BUDDIES_PER_SESSION)
             {
                 throw new ArgumentOutOfRangeException("Maximum number of buddies must be between 0 and " + MAX_NUMBER_OF_BUDDIES_PER_SESSION + ".");
             }

@@ -1,25 +1,32 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
 using CodeBuddies.Models.Entities;
+using CodeBuddies.Models.Entities.Interfaces;
 using CodeBuddies.Models.Exceptions;
 using CodeBuddies.MVVM;
 using CodeBuddies.Repositories;
+using CodeBuddies.Repositories.Interfaces;
 using CodeBuddies.Resources.Data;
 using CodeBuddies.Services;
+using CodeBuddies.Services.Interfaces;
 
 namespace CodeBuddies.ViewModels
 {
     public class NotificationsPanelViewModel : ViewModelBase
     {
+        #region Fields
         private ObservableCollection<INotification> notifications;
         private INotificationService notificationService;
         private ISessionService sessionService;
+        #endregion
 
-        // This creates a command that runs a function and sends the
+        #region Commands
         public RelayCommand<INotification> AcceptCommand => new RelayCommand<INotification>(AcceptInvite);
         public RelayCommand<INotification> DeclineCommand => new RelayCommand<INotification>(DeclineInvite);
         public RelayCommand<INotification> MarkReadCommand => new RelayCommand<INotification>(MarkReadNotification);
+        #endregion
 
+        #region Properties
         public ObservableCollection<INotification> Notifications
         {
             get
@@ -32,6 +39,7 @@ namespace CodeBuddies.ViewModels
                 OnPropertyChanged();
             }
         }
+        #endregion
 
         public NotificationsPanelViewModel()
         {
@@ -42,6 +50,8 @@ namespace CodeBuddies.ViewModels
             sessionService = new SessionService(sessionRepository);
             Notifications = new ObservableCollection<INotification>(notificationService.GetAllNotificationsForCurrentBuddy());
         }
+
+        #region Methods
         private void AcceptInvite(INotification notification)
         {
             SendAcceptedInfoNotification(notification);
@@ -71,14 +81,12 @@ namespace CodeBuddies.ViewModels
         {
             RemoveNotification(notification);
         }
-
         private void SendDeclinedInfoNotification(INotification notification)
         {
             // Reverse sender and receiver ids because this notification goes backwards
             INotification declinedNotification = new InfoNotification(notificationService.GetFreeNotificationId(), DateTime.Now, "rejectInformation", "pending", Constants.CLIENT_NAME + " rejected your invitation", notification.ReceiverId, notification.SenderId, notification.SessionId);
             notificationService.AddNotification(declinedNotification);
         }
-
         private void SendAcceptedInfoNotification(INotification notification)
         {
             // Reverse sender and receiver ids because this notification goes backwards
@@ -89,7 +97,6 @@ namespace CodeBuddies.ViewModels
         {
             MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-
         private void RemoveNotification(INotification notification)
         {
             // update optimistically
@@ -105,5 +112,6 @@ namespace CodeBuddies.ViewModels
                 Notifications = new ObservableCollection<INotification>(notificationService.GetAllNotificationsForCurrentBuddy());
             }
         }
+        #endregion
     }
 }

@@ -1,7 +1,7 @@
-﻿using CodeBuddies.Models.Entities;
-using CodeBuddies.Repositories;
+﻿using CodeBuddies.Models.Entities.Interfaces;
+using CodeBuddies.Repositories.Interfaces;
 
-namespace CodeBuddies.Services
+namespace CodeBuddies.Services.Interfaces
 {
     public interface ISessionService
     {
