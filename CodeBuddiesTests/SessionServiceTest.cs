@@ -13,6 +13,7 @@ using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using System.Xml.Linq;
 using CodeBuddies.Models.Entities.Interfaces;
 using CodeBuddies.Repositories.Interfaces;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.DataCollection;
 
 namespace CodeBuddiesTests
 {
@@ -53,7 +54,7 @@ namespace CodeBuddiesTests
         }
 
         [Test]
-        public void GetAllSessionsForCurrentBuddy_WithID2_ReturnsNotificationsForBuddyWithID2()
+        public void GetAllSessionsForCurrentBuddy_WithSomeSessions_ReturnsListOfSessionsForCurrentBuddy()
         {
             var mockSessionionRepository = new Mock<ISessionRepository>();
             var expectedSessions = new List<ISession>
@@ -79,6 +80,19 @@ namespace CodeBuddiesTests
             var notifications = sessionService.GetAllSessionsForCurrentBuddy();
 
             Assert.That(notifications, Is.EqualTo(expectedSessions));
+        }
+
+        [Test]
+        public void GetAllSessionsForCurrentBuddy_WithNoSessions_ReturnsEmptyList()
+        {
+            var mockSessionRepository = new Mock<ISessionRepository>();
+            long buddyId = 2;
+            mockSessionRepository.Setup(repository => repository.GetAllSessionsOfABuddy(buddyId)).Returns(new List<ISession>());
+            var sessionService = new SessionService(mockSessionRepository.Object);
+
+            var sessions = sessionService.GetAllSessionsForCurrentBuddy();
+
+            Assert.That(sessions, Is.Empty);
         }
 
         [Test]
@@ -125,7 +139,7 @@ namespace CodeBuddiesTests
         }
 
         [Test]
-        public void AddNewSession_SessionAlreadyExists_ThrowsEntityAlreadyExistsException()
+        public void AddNewSession_WhenSessionAlreadyExists_ThrowsEntityAlreadyExistsException()
         {
             string sessionName = "ExistingSession";
             string maxParticipants = "5";
@@ -143,7 +157,7 @@ namespace CodeBuddiesTests
         }
 
         [Test]
-        public void AddBuddyMemberToSession_BuddyAlreadyInSession_ThrowsEntityAlreadyExistsException()
+        public void AddBuddyMemberToSession_WhenBuddyAlreadyInSession_ThrowsEntityAlreadyExistsException()
         {
             long buddyId = 1;
             long sessionId = 1;
@@ -156,7 +170,7 @@ namespace CodeBuddiesTests
         }
 
         [Test]
-        public void AddBuddyMemberToSession_BuddyNotInSession_AddsBuddyMember()
+        public void AddBuddyMemberToSession_WhenBuddyNotInSession_AddsBuddyMember()
         {
             long buddyId = 1;
             long sessionId = 1;
@@ -197,21 +211,96 @@ namespace CodeBuddiesTests
         }
 
         [Test]
-        public void FilterSessionsBySessionName_WithSessionInName_ReturnsFilteredSessions()
+        public void FilterSessionsBySessionName_WithSessionInName_ReturnsFilteredSessionsOfCurrentBuddy()
         {
             string sessionName = "Session";
+            long currentBuddyId = 2;
             var sessions = new List<ISession>
             {
                 new Session(1, 2, "Session1", DateTime.Now, DateTime.Now, new List<long>(), new List<IMessage>(), new List<ICodeContribution>(), new List<ICodeReviewSection>(), new List<string>(), new TextEditor("color", new List<string>()), new CodeBuddies.Models.Entities.DrawingBoard("filepath")),
                 new Session(2, 2, "Session2", DateTime.Now, DateTime.Now, new List<long>(), new List<IMessage>(), new List<ICodeContribution>(), new List<ICodeReviewSection>(), new List<string>(), new TextEditor("color", new List<string>()), new CodeBuddies.Models.Entities.DrawingBoard("filepath")),
             };
-            var mockRepository = new Mock<ISessionRepository>();
-            mockRepository.Setup(repo => repo.GetAllSessionsOfABuddy(2)).Returns(sessions);
-            var sessionService = new SessionService(mockRepository.Object);
+            var mockSessionRepository = new Mock<ISessionRepository>();
+            mockSessionRepository.Setup(repo => repo.GetAllSessionsOfABuddy(currentBuddyId)).Returns(sessions);
+            var sessionService = new SessionService(mockSessionRepository.Object);
 
             var filteredSessions = sessionService.FilterSessionsBySessionName(sessionName);
 
             Assert.That(filteredSessions.All(session => session.Name.Contains(sessionName)), Is.True);
+        }
+
+        [Test]
+        public void FilterSessionsBySessionName_WhenNoSessionsInRepository_ReturnsEmptyList()
+        {
+            string sessionName = "Session";
+            long currentBuddyId = 2;
+            var mockSessionRepository = new Mock<ISessionRepository>();
+            mockSessionRepository.Setup(repo => repo.GetAllSessionsOfABuddy(currentBuddyId)).Returns(new List<ISession>());
+            var sessionService = new SessionService(mockSessionRepository.Object);
+
+            var sessionsOfCurrentBuddy = sessionService.FilterSessionsBySessionName(sessionName);
+
+            Assert.That(sessionsOfCurrentBuddy, Is.Empty);
+        }
+
+        [Test]
+        public void FilterSessionsBySessionName_WithEmptySessionName_ReturnsAllSessionsOfCurrentBuddy()
+        {
+            var sessionName = "";
+            long currentBuddyId = 2;
+            var mockSessionRepository = new Mock<ISessionRepository>();
+            var sessions = new List<ISession>
+            {
+                new Mock<ISession>().SetupAllProperties().Object
+            };
+            sessions[0].Id = 1;
+            sessions[0].OwnerId = 2;
+            sessions[0].Name = "name";
+            sessions[0].CreationDate = new DateTime(2024, 4, 30);
+            sessions[0].LastEditDate = new DateTime(2024, 5, 1);
+            sessions[0].Buddies = new List<long>();
+            sessions[0].Messages = new List<IMessage>();
+            sessions[0].CodeContributions = new List<ICodeContribution>();
+            sessions[0].CodeReviewSections = new List<ICodeReviewSection>();
+            sessions[0].FilePaths = new List<string>();
+            sessions[0].TextEditor = new TextEditor("color", new List<string>());
+            sessions[0].DrawingBoard = new CodeBuddies.Models.Entities.DrawingBoard("filepath");
+            mockSessionRepository.Setup(repo => repo.GetAllSessionsOfABuddy(currentBuddyId)).Returns(sessions);
+            var sessionService = new SessionService(mockSessionRepository.Object);
+
+            var result = sessionService.FilterSessionsBySessionName(sessionName);
+
+            CollectionAssert.AreEqual(sessions, result);
+        }
+
+        [Test]
+        public void FilterSessionsBySessionName_WithWrongSessionName_ReturnsEmptyList()
+        {
+            var sessionName = "wrong";
+            long currentBuddyId = 2;
+            var mockSessionRepository = new Mock<ISessionRepository>();
+            var sessions = new List<ISession>
+            {
+                new Mock<ISession>().SetupAllProperties().Object
+            };
+            sessions[0].Id = 1;
+            sessions[0].OwnerId = 2;
+            sessions[0].Name = "name";
+            sessions[0].CreationDate = new DateTime(2024, 4, 30);
+            sessions[0].LastEditDate = new DateTime(2024, 5, 1);
+            sessions[0].Buddies = new List<long>();
+            sessions[0].Messages = new List<IMessage>();
+            sessions[0].CodeContributions = new List<ICodeContribution>();
+            sessions[0].CodeReviewSections = new List<ICodeReviewSection>();
+            sessions[0].FilePaths = new List<string>();
+            sessions[0].TextEditor = new TextEditor("color", new List<string>());
+            sessions[0].DrawingBoard = new CodeBuddies.Models.Entities.DrawingBoard("filepath");
+            mockSessionRepository.Setup(repo => repo.GetAllSessionsOfABuddy(currentBuddyId)).Returns(sessions);
+            var sessionService = new SessionService(mockSessionRepository.Object);
+
+            var result = sessionService.FilterSessionsBySessionName(sessionName);
+
+            Assert.That(result, Is.Empty);
         }
     }
 }

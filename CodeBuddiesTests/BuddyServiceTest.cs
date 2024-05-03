@@ -118,7 +118,7 @@ namespace CodeBuddiesTests
             }
 
             [Test]
-            public void Constructor_WithActiveBuddies_InitializesActiveBuddiesFromBuddyRepository()
+            public void Constructor_WithSomeActiveBuddies_InitializesActiveBuddies()
             {
                 var expectedActiveBuddies = new List<IBuddy>
                 {
@@ -138,7 +138,18 @@ namespace CodeBuddiesTests
             }
 
             [Test]
-            public void Constructor_WithInactiveBuddies_InitializesInactiveBuddiesFromBuddyRepository()
+            public void Constructor_WithNoActiveBuddies_InitializesActiveBuddiesWithEmptyList()
+            {
+                var mockBuddyRepository = new Mock<IBuddyRepository>();
+                mockBuddyRepository.Setup(repo => repo.GetActiveBuddies()).Returns(new List<IBuddy>());
+                
+                var buddyService = new BuddyService(mockBuddyRepository.Object);
+
+                Assert.That(buddyService.ActiveBuddies, Is.Empty);
+            }
+
+            [Test]
+            public void Constructor_WithSomeInactiveBuddies_InitializesInactiveBuddies()
             {
                 var expectedInactiveBuddies = new List<IBuddy>
                 {
@@ -158,7 +169,30 @@ namespace CodeBuddiesTests
             }
 
             [Test]
-            public void GetAllBuddies_FromBuddyRepository_ReturnsAllBuddies()
+            public void Constructor_WithNoInctiveBuddies_InitializesInactiveBuddiesWithEmptyList()
+            {
+                var mockBuddyRepository = new Mock<IBuddyRepository>();
+                mockBuddyRepository.Setup(repo => repo.GetInactiveBuddies()).Returns(new List<IBuddy>());
+
+                var buddyService = new BuddyService(mockBuddyRepository.Object);
+
+                Assert.That(buddyService.InactiveBuddies, Is.Empty);
+            }
+
+            [Test]
+            public void GetAllBuddies_WithNoBuddiesInRepository_ReturnsEmptyList()
+            {
+                var mockBuddyRepository = new Mock<IBuddyRepository>();
+                mockBuddyRepository.Setup(repo => repo.GetAllBuddies()).Returns(new List<IBuddy>());
+                var buddyService = new BuddyService(mockBuddyRepository.Object);
+
+                var result = buddyService.GetAllBuddies();
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void GetAllBuddies_WithSomeBuddiesInReository_ReturnsListOfAllBuddies()
             {
                 var expectedBuddies = new List<IBuddy>
                 {
@@ -213,7 +247,54 @@ namespace CodeBuddiesTests
             }
 
             [Test]
-            public void RefreshData_WithActiveBuddies_UpdatesActiveBuddies()
+            public void FilterBuddies_WhenNoBuddiesInRepository_ReturnsEmptyList()
+            {
+                var searchText = "search";
+                var mockBuddyRepository = new Mock<IBuddyRepository>();
+                mockBuddyRepository.Setup(repo => repo.GetAllBuddies()).Returns(new List<IBuddy>());
+                var buddyService = new BuddyService(mockBuddyRepository.Object);
+
+                var result = buddyService.FilterBuddies(searchText);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void FilterBuddies_WithEmptySearchText_ReturnsAllBuddies()
+            {
+                var searchText = "";
+                var mockBuddyRepository = new Mock<IBuddyRepository>();
+                var buddies = new List<IBuddy>
+                {
+                    new Buddy(1, "Buddy1", "profile1.jpg", "active", new List<Notification>()),
+                };
+                mockBuddyRepository.Setup(repo => repo.GetAllBuddies()).Returns(buddies);
+                var buddyService = new BuddyService(mockBuddyRepository.Object);
+
+                var result = buddyService.FilterBuddies(searchText);
+
+                CollectionAssert.AreEqual(buddies, result);
+            }
+
+            [Test]
+            public void FilterBuddies_WithWrongSearchText_ReturnsEmptyList()
+            {
+                var searchText = "wrong";
+                var mockBuddyRepository = new Mock<IBuddyRepository>();
+                var buddies = new List<IBuddy>
+                {
+                    new Buddy(1, "Buddy1", "profile1.jpg", "active", new List<Notification>()),
+                };
+                mockBuddyRepository.Setup(repo => repo.GetAllBuddies()).Returns(buddies);
+                var buddyService = new BuddyService(mockBuddyRepository.Object);
+
+                var result = buddyService.FilterBuddies(searchText);
+
+                Assert.That(result, Is.Empty);
+            }
+
+            [Test]
+            public void RefreshData_WithSomeActiveBuddies_UpdatesActiveBuddies()
             {
                 var expectedActiveBuddies = new List<IBuddy>
                 {
@@ -234,7 +315,19 @@ namespace CodeBuddiesTests
             }
 
             [Test]
-            public void RefreshData_WithActiveBuddies_UpdatesInactiveBuddies()
+            public void RefreshData_WithNoActiveBuddies_UpdatesActiveBuddiesToEmptyList()
+            {
+                var mockBuddyRepository = new Mock<IBuddyRepository>();
+                mockBuddyRepository.Setup(repository => repository.GetActiveBuddies()).Returns(new List<IBuddy>());
+                var buddyService = new BuddyService(mockBuddyRepository.Object);
+
+                buddyService.RefreshData();
+
+                Assert.That(buddyService.ActiveBuddies, Is.Empty);
+            }
+
+            [Test]
+            public void RefreshData_WithSomeInactiveBuddies_UpdatesInactiveBuddies()
             {
                 var expectedInactiveBuddies = new List<IBuddy>
                 {
@@ -252,6 +345,18 @@ namespace CodeBuddiesTests
                 buddyService.RefreshData();
 
                 Assert.That(buddyService.InactiveBuddies, Is.EqualTo(expectedInactiveBuddies));
+            }
+
+            [Test]
+            public void RefreshData_WithNoInactiveBuddies_UpdatesInactiveBuddiesToEmptyList()
+            {
+                var mockBuddyRepository = new Mock<IBuddyRepository>();
+                mockBuddyRepository.Setup(repository => repository.GetInactiveBuddies()).Returns(new List<IBuddy>());
+                var buddyService = new BuddyService(mockBuddyRepository.Object);
+
+                buddyService.RefreshData();
+
+                Assert.That(buddyService.InactiveBuddies, Is.Empty);
             }
 
             [Test]
@@ -291,7 +396,6 @@ namespace CodeBuddiesTests
 
                 Assert.That(changedBuddy.Status, Is.EqualTo("inactive"));
             }
-
         }
     }
 }

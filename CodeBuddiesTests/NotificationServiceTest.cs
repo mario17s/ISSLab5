@@ -47,7 +47,7 @@ namespace CodeBuddiesTests
         }
 
         [Test]
-        public void GetAllNotificationsForCurrentBuddy_WithID2_ReturnsNotificationsForBuddyWithID2()
+        public void GetAllNotificationsForCurrentBuddy_WithSomeNotifications_ReturnsListOfNotificationsForCurrentBuddy()
         {
             var mockNotificationRepository = new Mock<INotificationRepository>();
             var expectedNotifications = new List<INotification>
@@ -69,6 +69,19 @@ namespace CodeBuddiesTests
             var notifications = notificationService.GetAllNotificationsForCurrentBuddy();
 
             Assert.That(notifications, Is.EqualTo(expectedNotifications));
+        }
+
+        [Test]
+        public void GetAllNotificationsForCurrentBuddy_WithNoNotifications_ReturnsEmptyList()
+        {
+            var mockNotificationRepository = new Mock<INotificationRepository>();
+            long buddyId = 2;
+            mockNotificationRepository.Setup(repository => repository.GetAllByBuddyId(buddyId)).Returns(new List<INotification>());
+            var notificationService = new NotificationService(mockNotificationRepository.Object);
+
+            var notifications = notificationService.GetAllNotificationsForCurrentBuddy();
+
+            Assert.That(notifications, Is.Empty);
         }
 
         [Test]
