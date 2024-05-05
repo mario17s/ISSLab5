@@ -14,6 +14,7 @@ namespace CodeBuddiesTests
     [TestFixture]
     internal class SessionRepoTests
     {
+
         [Test]
         public void GetBuddiesForSpecificSession_SelectsBuddiesIdsForASections_ReturnsListOfThem()
         {
@@ -91,7 +92,5 @@ namespace CodeBuddiesTests
             long expectedOutput = 2;
             Assert.AreEqual(expectedOutput, actualOutput);
         }
-
-
     }
 }
