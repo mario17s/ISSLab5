@@ -1,6 +1,7 @@
-﻿using CodeBuddies.Models.Entities.Interfaces;
+﻿using CodeBuddies.Models.Entities;
+using CodeBuddies.Models.Entities.Interfaces;
 
-namespace CodeBuddies.Repositories.Interfaces
+namespace CodeBuddies.Repositories
 {
     public interface IBuddyRepository
     {
@@ -8,5 +9,7 @@ namespace CodeBuddies.Repositories.Interfaces
         List<IBuddy> GetAllBuddies();
         List<IBuddy> GetInactiveBuddies();
         IBuddy UpdateBuddyStatus(IBuddy buddy);
+        void AddBuddy(long buddyId, string buddyName, string buddyProfile, string status);
+        void ClearDatabase();
     }
 }

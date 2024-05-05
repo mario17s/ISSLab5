@@ -1,4 +1,5 @@
 ﻿using CodeBuddies.Models.Entities.Interfaces;
+using CodeBuddies.Repositories;
 using CodeBuddies.Repositories.Interfaces;
 
 namespace CodeBuddies.Services.Interfaces

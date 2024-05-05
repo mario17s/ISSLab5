@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CodeBuddies.Services;
 using CodeBuddies.Models.Entities.Interfaces;
 using CodeBuddies.Repositories.Interfaces;
+using CodeBuddies.Repositories;
 
 namespace CodeBuddiesTests
 {

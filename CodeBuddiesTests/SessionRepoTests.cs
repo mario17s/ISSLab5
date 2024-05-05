@@ -1,4 +1,6 @@
-﻿using CodeBuddies.Models.Entities.Interfaces;
+﻿using CodeBuddies.Models.Entities;
+using CodeBuddies.Models.Entities.Interfaces;
+using CodeBuddies.Repositories;
 using CodeBuddies.Repositories.Interfaces;
 using Moq;
 using System;
@@ -13,150 +15,83 @@ namespace CodeBuddiesTests
     internal class SessionRepoTests
     {
         [Test]
-        public void GetMessagesForSpecificSession_SelectsMessagesForASection_ReturnsListOfMessagesOfThatSessionId()
-        {
-            long sessionId = 1;
-            var mockRepository = new Mock<ISessionRepository>();
-            var expectedOutput = new List<IMessage> { new Mock<IMessage>().SetupAllProperties().Object };
-            expectedOutput[0].MessageId = 1;
-            expectedOutput[0].TimeStamp = DateTime.Now;
-            expectedOutput[0].Content = "njbfbg";
-            expectedOutput[0].SenderId = 2;
-            mockRepository.Setup(repository => repository.GetMessagesForSpecificSession(sessionId)).Returns(expectedOutput);
-            var repositoryObject = mockRepository.Object;
-            var actualOutput = repositoryObject.GetMessagesForSpecificSession(sessionId);
-            Assert.AreEqual(expectedOutput, actualOutput);
-        }
-
-        [Test]
-        public void GetCodeContributionsForSpecificSession_SelectsContributionsForASection_ReturnsListOfCodeContributionsOfThatSessionId()
-        {
-            long sessionId = 1;
-            var mockRepository = new Mock<ISessionRepository>();
-            var expectedOutput = new List<ICodeContribution> { new Mock<ICodeContribution>().SetupAllProperties().Object };
-            expectedOutput[0].Contributor = 1;
-            expectedOutput[0].ContributionDate = DateTime.Now;
-            expectedOutput[0].ContributionValue = 10;
-            mockRepository.Setup(repository => repository.GetCodeContributionsForSpecificSession(sessionId)).Returns(expectedOutput);
-            var repositoryObject = mockRepository.Object;
-            var actualOutput = repositoryObject.GetCodeContributionsForSpecificSession(sessionId);
-            Assert.AreEqual(expectedOutput, actualOutput);
-        }
-
-        [Test]
-        public void GetMessagesForSpecificCodeReview_SelectsMessagesForACodeReview_ReturnsListOfMessagesOfThatCodeReview()
-        {
-            long codeReviewId = 1;
-            var mockRepository = new Mock<ISessionRepository>();
-            var expectedOutput = new List<IMessage> { new Mock<IMessage>().SetupAllProperties().Object };
-            expectedOutput[0].MessageId = 1;
-            expectedOutput[0].TimeStamp = DateTime.Now;
-            expectedOutput[0].Content = "njbfbg";
-            expectedOutput[0].SenderId = 2;
-            mockRepository.Setup(repository => repository.GetMessagesForSpecificCodeReview(codeReviewId)).Returns(expectedOutput);
-            var repositoryObject = mockRepository.Object;
-            var actualOutput = repositoryObject.GetMessagesForSpecificCodeReview(codeReviewId);
-            Assert.AreEqual(expectedOutput, actualOutput);
-        }
-
-        [Test]
-        public void GetCodeReviewSectionsForSpecificSession_SelectsCodeReviewSectionsForASections_ReturnsListOfThem()
-        {
-            long sessionId = 1;
-            var mockRepository = new Mock<ISessionRepository>();
-            var expectedOutput = new List<ICodeReviewSection> { new Mock<ICodeReviewSection>().SetupAllProperties().Object };
-            expectedOutput[0].Id = 1;
-            expectedOutput[0].OwnerId = 2;
-            expectedOutput[0].Messages = new List<IMessage>();
-            expectedOutput[0].CodeSection = "int a = 5;";
-            expectedOutput[0].IsClosed = true;
-            mockRepository.Setup(repository => repository.GetCodeReviewSectionsForSpecificSession(sessionId)).Returns(expectedOutput);
-            var repositoryObject = mockRepository.Object;
-            var actualOutput = repositoryObject.GetCodeReviewSectionsForSpecificSession(sessionId);
-            Assert.AreEqual(expectedOutput, actualOutput);
-        }
-
-        [Test]
         public void GetBuddiesForSpecificSession_SelectsBuddiesIdsForASections_ReturnsListOfThem()
         {
-            long sessionId = 1;
-            var mockRepository = new Mock<ISessionRepository>();
-            var expectedOutput = new List<long> { 1,2,3 };
-            mockRepository.Setup(repository => repository.GetBuddiesForSpecificSession(sessionId)).Returns(expectedOutput);
-            var repositoryObject = mockRepository.Object;
-            var actualOutput = repositoryObject.GetBuddiesForSpecificSession(sessionId);
-            Assert.AreEqual(expectedOutput, actualOutput);
+            IBuddyRepository buddyRepository = new BuddyRepository();
+            ISessionRepository sessionRepository = new SessionRepository();
+            buddyRepository.ClearDatabase();
+            buddyRepository.AddBuddy(1, "Mario", "mario.jpg", "active");
+            buddyRepository.AddBuddy(2, "Alex", "alex.jpg", "inactive");
+            sessionRepository.AddNewSession("nustiu", 1, 3);
+            sessionRepository.AddNewSession("habarnam", 2, 3);
+            List<long> actualOutput = sessionRepository.GetBuddiesForSpecificSession(2);
+            List<long> expectedOutout = new List<long> { 2 };
+            Assert.AreEqual(actualOutput[0], expectedOutout[0]);
         }
 
         [Test]
         public void GetAllSessionsOfABuddy_SelectsSessionsOfABuddy_ReturnsListOfThem()
         {
-            long buddyId = 1;
-            var mockRepository = new Mock<ISessionRepository>();
-            var expectedOutput = new List<ISession> { new Mock<ISession>().SetupAllProperties().Object };
-            expectedOutput[0].Id = 2;
-            expectedOutput[0].OwnerId = 1;
-            expectedOutput[0].Name = "nana";
-            expectedOutput[0].CreationDate = DateTime.Now;
-            expectedOutput[0].LastEditDate = DateTime.Now;
-            expectedOutput[0].Buddies = new List<long> { 1, 2, 3 };
-            expectedOutput[0].Messages = new List<IMessage>();
-            expectedOutput[0].CodeContributions = new List<ICodeContribution>();
-            expectedOutput[0].CodeReviewSections = new List<ICodeReviewSection>();
-            expectedOutput[0].FilePaths = new List<string>();
-            expectedOutput[0].TextEditor = null;
-            expectedOutput[0].DrawingBoard = null;
-            mockRepository.Setup(repository => repository.GetAllSessionsOfABuddy(buddyId)).Returns(expectedOutput);
-            var repositoryObject = mockRepository.Object;
-            var actualOutput = repositoryObject.GetAllSessionsOfABuddy(buddyId);
-            Assert.AreEqual(expectedOutput, actualOutput);
-
+            IBuddyRepository buddyRepository = new BuddyRepository();
+            ISessionRepository sessionRepository = new SessionRepository();
+            buddyRepository.ClearDatabase();
+            buddyRepository.AddBuddy(1, "Mario", "mario.jpg", "active");
+            buddyRepository.AddBuddy(2, "Alex", "alex.jpg", "inactive");
+            sessionRepository.AddNewSession("nustiu", 1, 3);
+            sessionRepository.AddNewSession("habarnam", 2, 3);
+            sessionRepository.AddNewSession("alabala", 1, 4);
+            List<ISession> actualOutput = sessionRepository.GetAllSessionsOfABuddy(1);
+            List<ISession> expectedOutput = new List<ISession>
+            {
+                new Session(1, 1, "nustiu", DateTime.Now, DateTime.Now, null, null, null, null, null, null, null),
+                new Session(3, 1, "alabala", DateTime.Now, DateTime.Now, null, null, null, null, null, null, null)
+            };
+            Assert.AreEqual(expectedOutput[1].Id, actualOutput[1].Id);
         }
 
         [Test]
         public void AddBuddyMemberToSession_AddsRowInBuddySessionTable_InsertsNewBuddyInTheSession()
         {
-            var mockRepository = new Mock<ISessionRepository>();
-            long buddyId = 1;
-            long sessionId = 2;
-
-            mockRepository.Object.AddBuddyMemberToSession(buddyId, sessionId);
-
-            mockRepository.Verify(repo => repo.AddBuddyMemberToSession(buddyId, sessionId), Times.Once);
+            IBuddyRepository buddyRepository = new BuddyRepository();
+            ISessionRepository sessionRepository = new SessionRepository();
+            buddyRepository.ClearDatabase();
+            buddyRepository.AddBuddy(1, "Mario", "mario.jpg", "active");
+            buddyRepository.AddBuddy(2, "Alex", "alex.jpg", "inactive");
+            sessionRepository.AddNewSession("nustiu", 1, 3);
+            sessionRepository.AddBuddyMemberToSession(2, 1);
+            List<long> actualOutput = sessionRepository.GetBuddiesForSpecificSession(1);
+            List<long> expectedOutput = new List<long> { 1, 2 };
+            Assert.AreEqual(actualOutput[0], expectedOutput[0]);
         }
 
         [Test]
-        public void GetSessionName_FindsNameBasedOnSessionId_ReturnsRgeFoundName()
+        public void GetSessionName_FindsNameBasedOnSessionId_ReturnsTheFoundName()
         {
-            var mockRepository = new Mock<ISessionRepository>();
-            long sessionId = 2;
-            string expectedOutput = "liga";
-            mockRepository.Setup(repository => repository.GetSessionName(sessionId)).Returns(expectedOutput);
-            var repositoryObject = mockRepository.Object;
-            string actualOutput = repositoryObject.GetSessionName(sessionId);
+            IBuddyRepository buddyRepository = new BuddyRepository();
+            ISessionRepository sessionRepository = new SessionRepository();
+            buddyRepository.ClearDatabase();
+            buddyRepository.AddBuddy(1, "Mario", "mario.jpg", "active");
+            buddyRepository.AddBuddy(2, "Alex", "alex.jpg", "inactive");
+            sessionRepository.AddNewSession("nustiu", 1, 3);
+            string actualOutput = sessionRepository.GetSessionName(1);
+            string expectedOutput = "nustiu";
             Assert.AreEqual(expectedOutput, actualOutput);
         }
 
         [Test]
         public void GetFreeSessionId_FindsTheSuccessorOfTheMaximumSessionId_ReturnsItAsTheNextFreeSessionId()
         {
-            var mockRepository = new Mock<ISessionRepository>();
-            long expectedOutput = 10;
-            mockRepository.Setup(mockRepository => mockRepository.GetFreeSessionId()).Returns(expectedOutput);
-            var repositoryObject = mockRepository.Object;
-            long actualOutput = repositoryObject.GetFreeSessionId();
+            IBuddyRepository buddyRepository = new BuddyRepository();
+            ISessionRepository sessionRepository = new SessionRepository();
+            buddyRepository.ClearDatabase();
+            buddyRepository.AddBuddy(1, "Mario", "mario.jpg", "active");
+            buddyRepository.AddBuddy(2, "Alex", "alex.jpg", "inactive");
+            sessionRepository.AddNewSession("nustiu", 1, 3);
+            long actualOutput = sessionRepository.GetFreeSessionId();
+            long expectedOutput = 2;
             Assert.AreEqual(expectedOutput, actualOutput);
         }
 
-        [Test]
-        public void AddNewSession_InsertsASessionInTheDatabase()
-        {
-            var mockRepository = new Mock<ISessionRepository>();
-            string sessionName = "study";
-            long ownerId = 1;
-            int maximumNumberOfParticipants = 5;
-            mockRepository.Object.AddNewSession(sessionName, ownerId, maximumNumberOfParticipants);
-            mockRepository.Verify(repository => repository.AddNewSession(sessionName, ownerId, maximumNumberOfParticipants), Times.Once()); 
-        }
+
     }
 }

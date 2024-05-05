@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using CodeBuddies.Models.Entities;
 using CodeBuddies.Models.Entities.Interfaces;
+using CodeBuddies.Models.Exceptions;
 using CodeBuddies.MVVM;
 using CodeBuddies.Repositories.Interfaces;
 namespace CodeBuddies.Repositories
@@ -12,7 +13,6 @@ namespace CodeBuddies.Repositories
         {
         }
 
-        #region Getters
         public List<IBuddy> GetAllBuddies()
         {
             List<IBuddy> buddies = new List<IBuddy>();
@@ -40,11 +40,11 @@ namespace CodeBuddies.Repositories
 
                 foreach (DataRow notificationRow in notificationDataSet.Tables["Notifications"].Rows)
                 {
-                   Notification currentNotification;
+                    Notification currentNotification;
 
                     if (notificationRow["notification_type"].ToString() == "invite")
                     {
-                       currentNotification = new InviteNotification((long)notificationRow["id"], (DateTime)notificationRow["notification_timestamp"], notificationRow["notification_type"].ToString(), notificationRow["notification_status"].ToString(), notificationRow["notification_description"].ToString(), (long)notificationRow["sender_id"], (long)notificationRow["receiver_id"], (long)notificationRow["session_id"], false);
+                        currentNotification = new InviteNotification((long)notificationRow["id"], (DateTime)notificationRow["notification_timestamp"], notificationRow["notification_type"].ToString(), notificationRow["notification_status"].ToString(), notificationRow["notification_description"].ToString(), (long)notificationRow["sender_id"], (long)notificationRow["receiver_id"], (long)notificationRow["session_id"], false);
                     }
                     else
                     {
@@ -70,12 +70,49 @@ namespace CodeBuddies.Repositories
         {
             return GetAllBuddies().Where(buddy => buddy.Status == "inactive").ToList();
         }
-        #endregion
 
         public IBuddy UpdateBuddyStatus(IBuddy buddy)
         {
             buddy.Status = buddy.Status == "active" ? "inactive" : "active";
             return buddy;
+        }
+
+        public void ClearDatabase()
+        {
+            List<string> tables = new List<string>
+            {
+                "BuddiesSessions", "MessagesCodeReviews", "MessagesSessions", "CodeReviewsSessions",
+                "Notifications", "Sessions", "Messages", "CodeReviews", "CodeContributions", "Buddies"
+            };
+            foreach (string table in tables)
+            {
+                string deleteNotificationQuery = $"DELETE FROM {table}";
+                using (SqlCommand deleteCommand = new SqlCommand(deleteNotificationQuery, sqlConnection))
+                {
+                    deleteCommand.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void AddBuddy(long buddyId, string buddyName, string buddyProfile, string status)
+        {
+            string insertQuery = "INSERT INTO Buddies VALUES (@BuddyId, @BuddyName, @BuddyProfile, @Status)";
+            try
+            {
+                using (SqlCommand insertCommand = new SqlCommand(insertQuery, sqlConnection))
+                {
+                    insertCommand.Parameters.AddWithValue("@BuddyId", buddyId);
+                    insertCommand.Parameters.AddWithValue("@BuddyName", buddyName);
+                    insertCommand.Parameters.AddWithValue("@BuddyProfile", buddyProfile);
+                    insertCommand.Parameters.AddWithValue("@Status", status);
+
+                    insertCommand.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new EntityAlreadyExists(ex.Message);
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
-﻿using CodeBuddies.Models.Entities.Interfaces;
+﻿using CodeBuddies.Models.Entities;
+using CodeBuddies.Models.Entities.Interfaces;
 
-namespace CodeBuddies.Repositories.Interfaces
+namespace CodeBuddies.Repositories
 {
     public interface INotificationRepository
     {
@@ -9,5 +10,6 @@ namespace CodeBuddies.Repositories.Interfaces
         long GetFreeNotificationId();
         void RemoveById(long notificationId);
         void Save(INotification notification);
+        void ClearDatabase();
     }
 }

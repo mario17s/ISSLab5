@@ -13,7 +13,6 @@ namespace CodeBuddies.Repositories
         {
         }
 
-        #region Getters
         public List<INotification> GetAll()
         {
             List<INotification> notifications = new List<INotification>();
@@ -75,6 +74,17 @@ namespace CodeBuddies.Repositories
             return notifications;
         }
 
+        public void RemoveById(long notificationId)
+        {
+            string deleteNotificationQuery = "DELETE FROM Notifications WHERE id = @notificationId";
+            using (SqlCommand deleteCommand = new SqlCommand(deleteNotificationQuery, sqlConnection))
+            {
+                deleteCommand.Parameters.AddWithValue("@notificationId", notificationId);
+
+                deleteCommand.ExecuteNonQuery();
+            }
+        }
+
         public long GetFreeNotificationId()
         {
             long maxId = 0;
@@ -92,17 +102,21 @@ namespace CodeBuddies.Repositories
             // Increment the maximum ID to get a free ID
             return maxId + 1;
         }
-        #endregion
 
-        #region Methods
-        public void RemoveById(long notificationId)
+        public void ClearDatabase()
         {
-            string deleteNotificationQuery = "DELETE FROM Notifications WHERE id = @notificationId";
-            using (SqlCommand deleteCommand = new SqlCommand(deleteNotificationQuery, sqlConnection))
+            List<string> tables = new List<string>
             {
-                deleteCommand.Parameters.AddWithValue("@notificationId", notificationId);
-
-                deleteCommand.ExecuteNonQuery();
+                "BuddiesSessions", "MessagesCodeReviews", "MessagesSessions", "CodeReviewsSessions",
+                "Notifications", "Sessions", "Messages", "CodeReviews", "CodeContributions", "Buddies"
+            };
+            foreach (string table in tables)
+            {
+                string deleteNotificationQuery = $"DELETE FROM {table}";
+                using (SqlCommand deleteCommand = new SqlCommand(deleteNotificationQuery, sqlConnection))
+                {
+                    deleteCommand.ExecuteNonQuery();
+                }
             }
         }
 
@@ -130,6 +144,5 @@ namespace CodeBuddies.Repositories
                 saveCommand.ExecuteNonQuery();
             }
         }
-        #endregion
     }
 }
